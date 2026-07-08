@@ -1,0 +1,126 @@
+html {
+    font-size: 100%;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.25rem;
+}
+
+h1 {
+    color: black;
+    font-family: 'IBM Plex Sans Devanagari', sans-serif;
+    font-size: 1.5rem;
+    margin: 0;
+    display: inline-block;
+}
+
+.navbar {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+    margin-left: auto;
+}
+
+.link {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 1rem;
+    list-style-type: none;
+    margin-top: 0;
+}
+
+.aboutus {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: medium;
+    align-self: center;
+}
+
+.login {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: medium;
+    padding: 0.5rem 1rem;
+    background-color: black;
+    color: white;
+    border-radius: 0.75rem;
+}
+
+.login a {
+    text-decoration: none;
+    color: white;
+}
+
+.aboutus a {
+    text-decoration: none;
+    color: black;
+}
+
+#loginBtn a,
+#createAccountBtn a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.intro {
+    margin-top: 12rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.homeimg {
+    width: 18.125rem;
+    height: 18.125rem;
+    display: block;
+}
+
+.button {
+    display: block;
+    font-family: 'Inter', sans-serif;
+}
+
+#loginBtn {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: medium;
+    background-color: black;
+    color: white;
+    border-radius: 0.75rem;
+    text-decoration: none;
+}
+
+.header h1 a {
+    text-decoration: none;
+    color: inherit;
+}
+
+#createAccountBtn {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: medium;
+    background-color: white;
+    color: black;
+    border-radius: 0.75rem;
+    border-color: darkgray;
+    border-style: solid;
+    text-decoration: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+body {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+body.fadeout {
+    opacity: 0;
+}

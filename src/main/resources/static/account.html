@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Devanagari:wght@100;200;300;400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">    
+<link rel="stylesheet" href="style1.css">
+<script src="script.js"></script>
+
+    <title>Create Account</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="loo.png" alt="logo" class="logo">
+            <h1><a href="index.html">Campus Learning Management System</a></h1>
+            <img class="dark" src="dark_mode.png" alt="darkmode">
+            <nav class="nav">
+                <a class="alink" href="about_us.html">About Us</a>
+                <a class="alink" href="index.html">Home</a>
+            </nav>
+        </div>
+        <h2>Create Account</h2>
+        <form>
+            <label for="username" class="label">Name</label><br>
+            <input type="text" id="username" name="username" class="input"><br>
+            <span id="usernameError"></span>
+            <label for="email" class="label">Email</label><br>
+            <input type="text" id="email" name="email" class="input" ><br>
+            <span id="emailerror"></span>
+            <label for="Rollno"  class="label" >Roll No.</label><br>
+            <input type="number" id="rollno" name="rollno" class="input"><br>
+            <span id="rollnoerror"></span>
+            <label for="password" name="password" class="label">Password</label><br>
+            <input type="password" id="password" name="password" class="input"><br>
+            <span id="passworderror"></span>
+            <button type="submit" class="button" >Create Account</button>
+        </form>
+    </div>
+    
+</body>
+</html>

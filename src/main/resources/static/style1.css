@@ -1,0 +1,180 @@
+html {
+    font-size: 100%;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.logo {
+    width: 2.5rem;
+    height: 1.0625rem;
+    display: inline-block;
+    margin-right: 1rem;
+    position: relative;
+    top: 0.125rem;
+    left: 1.25rem;
+}
+
+h1 {
+    display: inline-block;
+    font-family: 'Inter';
+    font-size: 1.5rem;
+    font-weight: medium;
+    margin: 0;
+}
+
+.nav {
+    display: flex;
+    gap: 1.25rem;
+    margin-left: auto;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 1rem 1.5rem 2rem;
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    font-family: 'Inter';
+    font-size: 1rem;
+    font-weight: medium;
+}
+
+h2 {
+    flex: 1 1 22rem;
+    align-self: center;
+    margin: 1.5rem 0 1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(2rem, 4vw, 4rem);
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+.label {
+    font-family: 'IBM Plex Sans Devanagari', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.input {
+    display: block;
+    width: 100%;
+    max-width: 23.3125rem;
+    min-height: 1.9375rem;
+    border: 0.0625rem solid black;
+    color: black;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.625rem 0.625rem -0.625rem #0B0404;
+}
+
+form {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    gap: 0.05rem;
+    flex: 1 1 24rem;
+    width: 100%;
+    max-width: 25rem;
+}
+
+.button {
+    position: static;
+    left: auto;
+    width: auto;
+    min-width: 9.4375rem;
+    height: auto;
+    display: inline-block;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    color: white;
+    background-color: black;
+    font-family: 'Inter', sans-serif;
+    font-weight: medium;
+    margin-top: 0.75rem;
+    align-self: flex-start;
+}
+
+.input.error {
+    border: 0.125rem solid red !important;
+    background-color: #ffebee;
+}
+
+#usernameError {
+    color: red;
+    font-size: 0.875rem;
+    font-family: 'Inter', sans-serif;
+    margin-top: 0.3125rem;
+    display: block;
+    margin-bottom: 0.625rem;
+}
+
+#emailerror {
+    color: rgb(252, 7, 7);
+    font-size: 0.875rem;
+    font-family: 'Inter', sans-serif;
+    margin-top: 0.3125rem;
+    display: block;
+    margin-bottom: 0.625rem;
+}
+
+#rollnoerror {
+    color: rgb(212, 9, 9);
+    font-size: 0.875rem;
+    font-family: 'Inter', sans-serif;
+    margin-top: 0.3125rem;
+    display: block;
+    margin-bottom: 0.625rem;
+}
+
+#passworderror {
+    color: rgb(212, 9, 9);
+    font-size: 0.875rem;
+    font-family: 'Inter', sans-serif;
+    margin-top: 0.3125rem;
+    display: block;
+    margin-bottom: 0.625rem;
+}
+
+body.darkmode .alink {
+    color: white;
+}
+
+body.darkmode {
+    color: white;
+    background-color: #111;
+}
+
+.header h1 a {
+    text-decoration: none;
+    color: inherit;
+}
+
+body {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+body.fadeout {
+    opacity: 0;
+}

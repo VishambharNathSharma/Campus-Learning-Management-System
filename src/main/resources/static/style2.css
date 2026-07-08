@@ -1,0 +1,184 @@
+html {
+    font-size: 100%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    width: 100%;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 13.75rem 1fr;
+    grid-template-rows: 7.4375rem minmax(0, 1fr);
+    min-height: 100vh;
+    width: 100%;
+}
+
+.header {
+    grid-column: 1 / -1;
+    width: 100%;
+    height: 7.4375rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.25rem;
+}
+
+.sidebar {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2.5rem 0;
+}
+
+.logo {
+    width: 2.5rem;
+    height: 1.375rem;
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+h1 {
+    display: inline-block;
+    font-family: 'Inter';
+    font-size: 1.5rem;
+    font-weight: medium;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+.nav {
+    display: flex;
+    gap: 1.25rem;
+    margin-left: auto;
+}
+
+nav a {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: medium;
+    background-color: black;
+    color: white;
+    border-radius: 0.75rem;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+}
+
+.header h1 a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.sidebar-links {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 3.125rem;
+}
+
+li a {
+    text-decoration: none;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: medium;
+}
+
+.main-content {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    padding: 2.5rem 1.875rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.875rem;
+}
+
+.about-heading {
+    display: block;
+}
+
+.about-heading h2 {
+    font-family: 'IBM Plex Sans Devanagari', sans-serif;
+    font-size: 2rem;
+    color: black;
+}
+
+.info-cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+
+.info-card {
+    background-color: #fff;
+    border-radius: 1.125rem;
+    box-shadow: 0 0.75rem 1.75rem rgba(0, 0, 0, 0.08);
+    padding: 1.5rem;
+    min-height: 11.25rem;
+}
+
+.info-card h3 {
+    font-family: 'IBM Plex Sans Devanagari', sans-serif;
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    color: #111;
+}
+
+.info-card p {
+    line-height: 1.7;
+    color: #555;
+    font-size: 0.9375rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.dark {
+    position: relative;
+    left: 40rem;
+    cursor: pointer;
+}
+
+body.darkmode .alink {
+    color: white;
+}
+
+body.darkmode {
+    color: white;
+    background-color: #111;
+}
+
+body.darkmode .header h1,
+body.darkmode .header h1 a {
+    color: white;
+}
+
+body.darkmode .about-heading h2 {
+    color: white;
+}
+
+.header h1,
+.header h1 a {
+    color: #111;
+}
+
+.about-heading h2 {
+    color: #111;
+}
+
+body.fadeout {
+    opacity: 0;
+}

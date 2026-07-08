@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Devanagari:wght@100;200;300;400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">    
+    <title>Login</title>
+    <link rel="stylesheet" href="style6.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+    
+         <div class="header">
+            <img src="loo.png" alt="logo" class="logo">
+            <h1><a href="index.html">Campus Learning Management System</a></h1>
+            
+            <!-- <nav class="navbar">
+                <a href="about_us.html" class="alink">About Us</a>
+                <a href="index.html" class="blink">Logout</a>
+            </nav> -->
+        </div>
+    
+<div class="main">
+    <section class="loginbox">
+        <img class="img" src="loo.png">
+        <h2>LMS</h2>
+        <select id="role" onchange="toggleRole()">
+            <option value="student">Student</option>
+            <option value="teacher">Teacher</option>
+        </select>
+        <div class="panel" id="studentPanel">
+        <h3>Student Login</h3>
+        <form id="studentForm" class="f">
+            <label for="studentEmail" class="email">Email: </label><br>
+            <input type="text" name="email" id="studentEmail" class="input"><br>
+            <span id="studentEmailError" class="error-text emailError"></span>
+            <label for="studentPassword" class="password">Password: </label><br>
+            <input type="password" class="input" name="password" id="studentPassword"><br>
+            <span id="studentPasswordError" class="error-text passwordError"></span>
+            <button type="submit" class="button">Login</button>
+        </form>
+        </div>
+        <div class="panel" id="teacherPanel">
+            <h3>Teacher Login</h3>
+             <form id="teacherForm" class="f">
+            <label for="teacherUsername" class="label">Name: </label><br>
+            <input type="text" name="username" id="teacherUsername" class="input"><br>
+            <span id="teacherUsernameError" class="error-text usernameError"></span><br>
+            <label for="teacherPassword" class="password">Password: </label><br>
+            <input type="password" class="input" name="password" id="teacherPassword"><br>
+            <span id="teacherPasswordError" class="error-text passwordError"></span>
+            <button type="submit" class="button" onclick="handleLogin(event)">Login</button>
+        </form>
+        </div>
+    </section>
+    </div>
+    </div>
+</body>
+</html>

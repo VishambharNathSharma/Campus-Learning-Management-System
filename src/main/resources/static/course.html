@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Devanagari:wght@100;200;300;400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">    
+    <title>Courses</title>
+    <style>
+        html {
+    font-size: 100%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 13.75rem 1fr;
+    grid-template-rows: 7.4375rem minmax(0, 1fr);
+}
+
+.header {
+    grid-row: 1 / 2;
+    grid-column: 1 / -1;
+    width: 100%;
+    height: 7.4375rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.25rem;
+}
+
+.sidebar {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo {
+    width: 2.5rem;
+    height: 1.375rem;
+    display: inline;
+}
+
+h1 {
+    display: inline;
+    font-family: 'Inter';
+    font-size: 1.5rem;
+    font-weight: medium;
+    margin: 0 1.25rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.navbar {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+    margin-left: auto;
+}
+
+a {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+.header h1 a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.alink {
+    color: black;
+}
+
+.blink {
+    padding: 0.5rem 1rem;
+    margin-left: 0.3125rem;
+    background-color: black;
+    color: white;
+    border-radius: 0.75rem;
+}
+
+.sidebar-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+    list-style-type: none;
+}
+
+li a {
+    text-decoration: none;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: medium;
+}
+#newassignment{
+    display: none;
+}
+.main_content{
+    min-height:fit-content;
+    max-height: 100vh;
+   position: relative;
+}
+.dark {
+    position: relative;
+    left: 40rem;
+    cursor: pointer;
+}
+
+body.darkmode .alink {
+    color: white;
+}
+
+body.darkmode {
+    color: black;
+    background-color: #111;
+}
+
+body.darkmode .header h1,
+body.darkmode .header h1 a {
+    color: white;
+}
+
+body.darkmode .about-heading h2 {
+    color: white;
+}
+.btn{
+    background-color: black;
+    font-family: 'IBM Plex Sans Devanagari','Inter';
+    padding: 1rem;
+    margin: 1rem;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.btn-background{
+    background-color: rgb(30, 30, 30);
+}
+.h1{
+    font-family: 'IBM Plex Sans Devanagari','Inter';
+    font-weight: 400;
+}
+.sub, .courseform, .assignmentform, h5{
+     font-family: 'IBM Plex Sans Devanagari','Inter';
+     position:relative;
+     left:1.3rem;
+}
+.form, #newassignment{
+    background-color: rgb(211, 228, 234);
+}
+.label {
+    font-family: 'IBM Plex Sans Devanagari', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.input {
+    display: block;
+    width: 100%;
+    max-width: 23.3125rem;
+    min-height: 1.9375rem;
+    border: 0.0625rem solid black;
+    color: black;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.625rem 0.625rem -0.625rem #0B0404;
+}
+
+form {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    gap: 0.05rem;
+    flex: 1 1 24rem;
+    width: 100%;
+    max-width: 25rem;
+}
+body.fadeout {
+    opacity: 0;
+}
+
+.input.error {
+    border: 0.125rem solid red !important;
+    background-color: #ffebee;
+}
+
+span[id$='Error'] {
+    display: block;
+    color: red;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.75rem;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+         <div class="header">
+            <img src="loo.png" alt="logo" class="logo">
+            <h1><a href="index.html">Campus Learning Management System</a></h1>
+            <img class="dark" src="dark_mode.png" alt="darkmode">
+            <nav class="navbar">
+                <a href="about_us.html" class="alink">About Us</a>
+                <a href="index.html" class="blink">Logout</a>
+            </nav>
+        </div>
+        <div class="sidebar">
+            <ul class="sidebar-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="dashboard.html">My Dashboard</a></li>
+            <li><a href="#" id="coursesLink">Courses</a></li>
+            </ul>
+        </div>
+        <div class="main_content">
+            <div class="btn-background">
+            <button  class="btn" onClick="toggleSection1()">New course</button>
+            <button  class="btn" onClick="toggleSection2()">New assignment</button>
+            </div>
+            <div class="form">
+            <section id="newcourse">
+                <h1 class="h1">Create a course</h1>
+<p class="sub">Set up the course shell. You can add lessons and materials once it's created.</p>
+                <form class="courseform">
+                    <fieldset>
+                    <legend style="color:#111">BASICS</legend>
+                    <label for="coursename" class="label" >Course Title</label><br>
+                    <input type="text" name="title" class="input" id="coursetitle"><br>
+                    <span id="coursenameError"></span>
+                     <label for="coursecode" class="label" >Course Code</label><br>
+                    <input type="text" name="title" class="input" id="coursecode"><br>
+                    <span id="coursecodeError"></span>
+                     <label for="coursecredits" class="label" >Credits</label><br>
+                    <input type="number" name="title" class="input" id="coursecredits"><br>
+                    <span id="coursecreditsError"></span>
+                     <label for="coursename" class="label" >Course Description</label><br>
+                    <input type="text" name="description" class="input" id="coursedescription"><br>
+                    <span id="coursedescriptionError"></span>
+                  </fieldset>
+                    <fieldset>
+                    <legend style="color:#111">SCHEDULE</legend>
+                     <label for="coursedate" class="label" >Start Date</label><br>
+                    <input type="date" name="date" class="input" id="coursedate1"><br>
+                     <label for="coursedate" class="label" >End Date</label><br>
+                    <input type="date" name="date" class="input" id="coursedate2"><br>
+                    </fieldset>
+                    <fieldset>
+                        <legend style="color:#111">LEARNING OBJECTIVES</legend>
+                        <button type="submit" id="objbtn">+ Add Objective</button>
+                    </fieldset>
+                    <button type="submit" class="btn">Create course</button>
+                </form>
+            </section>
+            </div>
+            <!------------------------------Assignment section------------------------------>
+            <section id="newassignment">
+                <h1 class="h1">Create an assignment</h1>
+                <h5 class="h1">Attach this assignment to one of your existing courses</h5>
+                <form class="assignmentform">
+                <fieldset>
+                    <legend style="color:#111">BASICS</legend>
+                    <label for="course" class="label">Course</label><br>
+                    <select id="assignment">
+                        <option value="course1"></option>
+                        <option value="course2"></option>
+                        <option value="course3"></option>
+                    </select><br>
+                    <label for="assignmenttitle" class="label">Assignment Title</label><br>
+                    <input type="text" name="assignment" class="input" id="assignmenttitleinput"><br>
+                    <label for="instructions" class="label">Instructions</label><br>
+                    <input type="text" name="assignment" class="input" id="assignmentinstructions">
+                </fieldset>
+                <fieldset>
+                    <legend style="color:#111">GRADING</legend>
+                    <label for="grading" class="label">Maximum Marks</label><br>
+                    <input type="number"  name ="grading" class="input" id="marksinput"><br>
+                    <label for="grading" class="label">Submission Type</label><br>
+                    <select>
+                        <option value="FileUpload">File Upload</option>
+                        <option value="Textentry">Text entry</option>
+                    </select>
+
+                </fieldset>
+                <fieldset>
+                    <legend style="color:#111">DEADLINE</legend>
+                    <label for="deadline" class="label">Due date&time</label><br>
+                    <input type="datetime-local" name="deadline" class="input">
+
+                </fieldset>
+                <button class="btn" type="submit">Create assignment</button>
+                </form>
+            </section>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded',function(){
+              const darkModeKey = 'darkMode';
+
+    function setDarkMode(isDark) {
+        document.body.classList.toggle('darkmode', isDark);
+        localStorage.setItem(darkModeKey, isDark ? 'enabled' : 'disabled');
+    }
+
+    const savedDarkMode = localStorage.getItem(darkModeKey);
+    if (savedDarkMode === 'enabled') {
+        setDarkMode(true);
+    } else if (savedDarkMode === 'disabled') {
+        setDarkMode(false);
+    }
+
+    var darkToggles = document.querySelectorAll('.dark');
+    if (darkToggles.length === 0) {
+        console.warn('No elements found with class "dark". Toggle will not work.');
+    }
+    darkToggles.forEach(function(el) {
+        el.addEventListener('click', function() {
+            const isDark = !document.body.classList.contains('darkmode');
+            setDarkMode(isDark);
+        });
+    });
+    const course=document.getElementById("newcourse");
+        const assignment = document.getElementById("newassignment");
+    window.toggleSection1= function toggleSection1(){
+        course.style.display = 'block';
+        assignment.style.display = 'none';
+    }
+     window.toggleSection2= function toggleSection2(){
+        course.style.display = 'none';
+        assignment.style.display = 'block';
+    }
+    document.querySelectorAll('a').forEach(link=>{
+    link.addEventListener('click',function(e){
+        if(link.target!=='_blank'&& link.href.startsWith(window.location.origin)){
+            e.preventDefault();
+            document.body.classList.add('fadeout');
+            setTimeout(()=>{
+                window.location.href=link.href;
+            },300);
+        }
+    });
+ });
+
+ document.body.classList.remove('fadeout');
+    var coursenameInput = document.getElementById('coursename');
+    if (coursenameInput) {
+        coursenameInput.addEventListener('input', function() {
+            let trimmedText = coursenameInput.value.trim();
+            const regex = /^[A-Za-z0-9 &:,'\-]{3,100}$/;
+            let errorMsg = document.getElementById('coursenameError');
+            
+            if (!regex.test(trimmedText) && trimmedText.length > 0) {
+                coursenameInput.classList.add('error');
+                if (errorMsg) {
+                    errorMsg.textContent = 'Course name must be 3-100 characters long and can include letters, numbers, and special characters like &, :, ,, -, and spaces.';
+                }
+            } else {
+                coursenameInput.classList.remove('error');
+                if (errorMsg) {
+                    errorMsg.textContent = '';
+                }
+            }
+        });
+    }
+ var codetxt = document.getElementById('coursecode');
+    if (codetxt) {
+        codetxt.addEventListener('input', function() {
+            const regex = /^[A-Z]{2,4}\d{2,4}$/;
+            let errormsg = document.getElementById('coursecodeError');
+            let text = codetxt.value;
+            if (!regex.test(text) && text.length > 0) {
+                codetxt.classList.add('error');
+                if (errormsg) {
+                    errormsg.textContent = 'Course code is not in required format';
+                }
+            } else {
+                codetxt.classList.remove('error');
+                if (errormsg) {
+                    errormsg.textContent = '';
+                }
+            }
+        });
+    }
+     var credittxt = document.getElementById('coursecredits');
+    if (credittxt) {
+        credittxt.addEventListener('input', function() {
+            const regex = /^([1-9]|1[0-2])$/ ;
+            let errormsg = document.getElementById('coursecreditsError');
+            let text = credittxt.value;
+            if (!regex.test(text) && text.length > 0) {
+                credittxt.classList.add('error');
+                if (errormsg) {
+                    errormsg.textContent = 'Course credits not in required format.';
+                }
+            } else {
+                credittxt.classList.remove('error');
+                if (errormsg) {
+                    errormsg.textContent = '';
+                }
+            }
+        });
+    }
+// function handleLogin(){
+//     const role=document.getElementById('role').value;
+//     localStorage.setItem('role',role);
+//     alert("Logged In as" +role);
+
+// }
+    const role = localStorage.getItem('role');
+
+// set courses link based on role
+const coursesLink = document.getElementById('coursesLink');
+if (role === 'teacher') {
+  coursesLink.href = 'course.html';
+} else if (role === 'student') {
+  coursesLink.href = 'studentcourse.html';
+}
+
+        });
+    </script>
+</body>
+</html>

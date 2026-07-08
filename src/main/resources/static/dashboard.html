@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Devanagari:wght@100;200;300;400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">    
+    <link rel="stylesheet" href="style3.css">
+    
+    <title>Dashboard</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="loo.png" alt="logo" class="logo">
+            <h1><a href="index.html">Campus Learning Management System</a></h1>
+                     <img class="dark" src="dark_mode.png" alt="darkmode">
+        <nav class="navbar">
+            <a href="about_us.html" class="alink">About Us</a>
+            <a href="index.html" class="blink">Logout</a>
+        </nav></div>
+        <div class="sidebar">
+            <ul class="sidebar-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="dashboard.html">My Dashboard</a></li>
+                <li><a href="#" id="coursesLink">Courses</a></li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <section class="heading">
+            <h2>Welcome Back! STUDENT NAME</h2>
+            </section>
+            <div class="dashboard-grid">
+            <div class="item1">
+                <h4>Internships</h4><br>
+                <h5>Online/Virtual: 0</h5><br>
+                <h5>Offline: 0</h5>
+            </div>
+            <div class="item2">
+                <h5>Current Semester: </h5>
+                <h5>Branch: </h5>
+                <h5>Course: </h5>
+            </div>
+            <div class="item3">
+                 <h5 id="h">Assignment Total: </h5>    
+                <h5>Assignment Submitted: </h5>
+            </div>
+            <div class="item4">
+                 <h5>SGPA 1st Yr: </h5>
+                <h5>SGPA 2nd Yr: </h5>
+                <h5>SGPA 3rd Yr: </h5>
+                <h5>SGPA 4th Yr: </h5>
+            </div>
+            <div class="item5">
+                <h1 class="bigboy">Total Credits Earned: </h1>
+            </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

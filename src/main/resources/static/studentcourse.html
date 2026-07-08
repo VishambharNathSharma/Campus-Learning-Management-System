@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses</title>
+</head>
+<style>
+            html {
+    font-size: 100%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 13.75rem 1fr;
+    grid-template-rows: 7.4375rem minmax(0, 1fr);
+}
+
+.header {
+    grid-row: 1 / 2;
+    grid-column: 1 / -1;
+    width: 100%;
+    height: 7.4375rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.25rem;
+}
+
+.sidebar {
+    grid-row: 2 / 4;
+    grid-column: 1 / 2;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo {
+    width: 2.5rem;
+    height: 1.375rem;
+    display: inline;
+}
+
+h1 {
+    display: inline;
+    font-family: 'Inter';
+    font-size: 1.5rem;
+    font-weight: medium;
+    margin: 0 1.25rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.navbar {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+    margin-left: auto;
+}
+
+a {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+.header h1 a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.alink {
+    color: black;
+}
+
+.blink {
+    padding: 0.5rem 1rem;
+    margin-left: 0.3125rem;
+    background-color: black;
+    color: white;
+    border-radius: 0.75rem;
+}
+
+.sidebar-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+    list-style-type: none;
+}
+
+li a {
+    text-decoration: none;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: medium;
+}
+#newassignment{
+    display: none;
+}
+.main_content{
+    min-height: calc(100vh - 7.4375rem);
+    max-height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding-top: 0;
+}
+.dark {
+    position: relative;
+    left: 40rem;
+    cursor: pointer;
+}
+
+body.darkmode .alink {
+    color: white;
+}
+
+body.darkmode {
+    color: black;
+    background-color: #111;
+}
+
+body.darkmode .header h1,
+body.darkmode .header h1 a {
+    color: white;
+}
+
+body.darkmode .about-heading h2 {
+    color: white;
+}
+.btn{
+    background-color: black;
+    font-family: 'IBM Plex Sans Devanagari','Inter';
+    padding: 1rem;
+    margin: 1rem;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.btn-background{
+    background-color: rgb(30, 30, 30);
+}
+.h1{
+    font-family: 'IBM Plex Sans Devanagari','Inter';
+    font-weight: 400;
+}
+    .label {
+    font-family: 'IBM Plex Sans Devanagari', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.input {
+    display: block;
+    width: 100%;
+    max-width: 23.3125rem;
+    min-height: 1.9375rem;
+    border: 0.0625rem solid black;
+    color: black;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.625rem 0.625rem -0.625rem #0B0404;
+}
+
+form {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    gap: 0.05rem;
+    flex: 1 1 24rem;
+    width: 100%;
+    max-width: 25rem;
+}
+body.fadeout {
+    opacity: 0;
+}
+
+.input.error {
+    border: 0.125rem solid red !important;
+    background-color: #ffebee;
+}
+
+span[id$='Error'] {
+    display: block;
+    color: red;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.75rem;
+}
+.course_content{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+    padding: 0.2rem;
+    align-items: stretch;
+}
+.item1, .item2, .item3, .item4{
+    background-color: white;
+    box-shadow: 0 0.75rem 1rem rgba(0, 0, 0, 0.15);
+    border-radius: 2rem;
+    padding: 1rem;
+    cursor: pointer;
+}
+.course {
+    display: none;
+}
+
+.course.active {
+    display: flex !important;
+    flex-direction: column;
+    width: 100%;
+}
+
+.course[hidden] {
+    display: none !important;
+}
+
+.panel {
+    margin-top: 0;
+    padding: 1.25rem;
+    border-radius: 0 0 1rem 1rem;
+    background-color: rgb(211, 228, 234);
+    min-height: calc(100vh - 7.4375rem - 4rem);
+    height: 100%;
+    box-shadow: 0 0.3rem 0.8rem rgba(0, 0, 0, 0.08);
+    width: 100%;
+    overflow: auto;
+}
+
+#browsecourses {
+    padding: 1.25rem;
+}
+#materialcourse{
+    position: relative;
+    left: 20px;
+    height:2rem;
+    width: 8rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+    padding: 0 0.5rem;
+}
+#assignmentcourse, legend,#attachfileheading,#assignfile, #notes, #assignmentsubmitbutton{
+    position: relative;
+    left: 20px;
+    font-family: 'IBM Plex Sans Devanagari','Inter';
+    font-size: 1.25rem;
+}
+#materials{
+    height: 84.5%;
+    background-color: rgb(211, 228, 234);
+}
+#assignments{
+    height: 84.5%;
+    background-color: rgb(211, 228, 234);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.5rem 1.25rem;
+}
+#assignmentcourse,
+#assignfile,
+#notes,
+#assignmentsubmitbutton {
+    width: min(100%, 24rem);
+    margin-left: 0;
+}
+#assignmentcourse,
+#notes {
+    border: 1px solid #999;
+    border-radius: 0.5rem;
+    padding: 0.7rem;
+}
+
+#assignmentsubmitbutton{
+    background-color: black;
+    font-family: 'IBM Plex Sans Devanagari','Inter';
+    padding: 1rem;
+    margin: 1rem 0 0;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    width: fit-content;
+}
+
+</style>
+<body>
+       <div class="container">
+         <div class="header">
+            <img src="loo.png" alt="logo" class="logo">
+            <h1><a href="index.html">Campus Learning Management System</a></h1>
+            <img class="dark" src="dark_mode.png" alt="darkmode">
+            <nav class="navbar">
+                <a href="about_us.html" class="alink">About Us</a>
+                <a href="index.html" class="blink">Logout</a>
+            </nav>
+        </div>
+        <div class="sidebar">
+            <ul class="sidebar-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="dashboard.html">My Dashboard</a></li>
+            <li><a href="#" id="coursesLink">Courses</a></li>
+            </ul>
+        </div>
+        <div class="main_content">
+            <div class="btn-background">
+            <button  class="btn" onClick="toggleSection1()">Browse Courses</button>
+            <button  class="btn" onClick="toggleSection2()">Materials</button>
+            <button  class="btn" onClick="toggleSection3()">Submit assignment</button>
+            </div>
+            
+            <section class="course panel" id="browsecourses" hidden>
+                    <h1 class="h1">Browse courses</h1>
+<p class="sub" style="position:relative;left:20px">Enroll in a course to access its materials, assignments, and grades.</p>
+            <div class="course_content">
+                     <div class="item1">
+                        <h5>Code</h5>
+                <h3>Title</h3><br>
+                <h5>Description</h5><br>
+                <h5>Faculty Name</h5>
+            </div>
+            <div class="item2">
+                <h5>Code</h5>
+                <h3>Title</h3><br>
+                <h5>Description</h5><br>
+                <h5>Faculty Name</h5>
+            </div>
+            <div class="item3">
+                 <h5>Code</h5>
+                <h3>Title</h3><br>
+                <h5>Description</h5><br>
+                <h5>Faculty Name</h5>
+            </div>
+            <div class="item4">
+                 <h5>Code</h5>
+                <h3>Title</h3><br>
+                <h5>Description</h5><br>
+                <h5>Faculty Name</h5>
+            </div>
+        </section>
+        <section class="course panel" id="materials" hidden>
+            <h1>Course materials</h1>
+            <p type="sub" style="position:relative;left:20px">Pick a course to view its lessons and resources.</p>
+            <select name="materials" id="materialcourse">
+                <option value="Course1">Course1</option>
+                <option value="Course2">Course2</option>
+                <option value="Course3">Course3</option>
+            </select>
+        </section>
+             <section class="course panel" id="assignments" hidden>
+                <h1>Submit an Assignment</h1>
+                <p type="sub" style="position:relative;left:20px">Choose the assignment, then attach your work or paste a link.</p>
+                <legend>Assignment</legend>
+                <select name="assignments" id="assignmentcourse">
+                <option value="Assignment1">Assignment1</option>
+                <option value="Assignment2">Assignment2</option>
+                <option value="Assignment3">Assignment3</option>
+            </select>
+            <legend>Your work</legend>
+            <h5 id="attachfileheading">Attach a file</h5> 
+            <input type="file" id="assignfile" accept=".pdf"/>
+            <legend>Notes for your teacher (optional)</legend>
+            <input type="text" name="notes" id="notes" class="input">
+            <button type="submit" id="assignmentsubmitbutton">Submit assignment</button>
+             </section>  
+            </div>
+            
+    <script>
+          document.addEventListener('DOMContentLoaded',function(){
+              const darkModeKey = 'darkMode';
+
+    function setDarkMode(isDark) {
+        document.body.classList.toggle('darkmode', isDark);
+        localStorage.setItem(darkModeKey, isDark ? 'enabled' : 'disabled');
+    }
+
+    const savedDarkMode = localStorage.getItem(darkModeKey);
+    if (savedDarkMode === 'enabled') {
+        setDarkMode(true);
+    } else if (savedDarkMode === 'disabled') {
+        setDarkMode(false);
+    }
+
+    var darkToggles = document.querySelectorAll('.dark');
+    if (darkToggles.length === 0) {
+        console.warn('No elements found with class "dark". Toggle will not work.');
+    }
+    darkToggles.forEach(function(el) {
+        el.addEventListener('click', function() {
+            const isDark = !document.body.classList.contains('darkmode');
+            setDarkMode(isDark);
+        });
+    });
+    const sections = {
+        browsecourses: document.getElementById("browsecourses"),
+        assignments: document.getElementById("assignments"),
+        materials: document.getElementById("materials")
+    };
+
+    function showSection(sectionId) {
+        Object.values(sections).forEach((section) => {
+            section.classList.remove('active');
+            section.hidden = true;
+        });
+        const selectedSection = sections[sectionId];
+        if (selectedSection) {
+            selectedSection.classList.add('active');
+            selectedSection.hidden = false;
+        }
+    }
+
+    window.toggleSection1 = function toggleSection1(){
+        showSection('browsecourses');
+    };
+    window.toggleSection2 = function toggleSection2(){
+        showSection('materials');
+    };
+    window.toggleSection3 = function toggleSection3(){
+        showSection('assignments');
+    };
+
+    showSection('browsecourses');
+
+    document.querySelectorAll('a').forEach(link=>{
+    link.addEventListener('click',function(e){
+        if(link.target!=='_blank'&& link.href.startsWith(window.location.origin)){
+            e.preventDefault();
+            document.body.classList.add('fadeout');
+            setTimeout(()=>{
+                window.location.href=link.href;
+            },300);
+        }
+    });
+ });
+  document.body.classList.remove('fadeout');
+});
+    </script>
+</body>
+</html>
