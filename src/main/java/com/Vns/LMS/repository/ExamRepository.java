@@ -1,10 +1,10 @@
 package com.Vns.LMS.repository;
 
-import com.Vns.LMS.entity.Course;
+import com.Vns.LMS.entity.Attendance;
+import com.Vns.LMS.entity.Exam;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CourseRepository extends JpaRepository<Course,Long> {
-
+public interface ExamRepository extends JpaRepository<Exam,Long> {
 }

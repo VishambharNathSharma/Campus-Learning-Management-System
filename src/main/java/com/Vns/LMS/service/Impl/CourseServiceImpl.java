@@ -28,6 +28,7 @@ public class CourseServiceImpl implements CourseService {
         course.setLearningObjectives(request.getLearningObjectives());
         Course savedCourse = courseRepository.save(course);
         CourseResponse response = new CourseResponse();
+        response.setId(savedCourse.getId());
         response.setCourseCode(savedCourse.getCourseCode());
         response.setCourseName(savedCourse.getCourseName());
         response.setDescription(savedCourse.getDescription());

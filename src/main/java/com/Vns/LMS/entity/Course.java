@@ -2,7 +2,6 @@ package com.Vns.LMS.entity;
 
 import jakarta.persistence.*;
 import org.hibernate.id.factory.spi.GenerationTypeStrategy;
-import org.springframework.data.annotation.Id;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -10,6 +9,7 @@ import java.util.List;
 @Entity
 @Table(name="courses")
 public class Course {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
