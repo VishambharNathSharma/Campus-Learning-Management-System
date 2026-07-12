@@ -2,6 +2,7 @@ package com.Vns.LMS.controller;
 
 import com.Vns.LMS.dto.AttendanceRequest;
 import com.Vns.LMS.dto.AttendanceResponse;
+import com.Vns.LMS.dto.AttendanceSummaryResponse;
 import com.Vns.LMS.service.AttendanceService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +33,10 @@ public class AttendanceController {
     public ResponseEntity<List<AttendanceResponse>> getAllAttendance() {
         return ResponseEntity.ok(attendanceService.getAllAttendance());
     }
+    @GetMapping("/summary")
+    public ResponseEntity<AttendanceSummaryResponse> getAttendanceSummary(@RequestParam Long studentId,@RequestParam Long courseID){
+        return ResponseEntity.ok(attendanceService.getAttendanceSummary(studentId,courseID));
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<AttendanceResponse> getAttendanceById(
@@ -58,4 +63,6 @@ public class AttendanceController {
 
         return ResponseEntity.ok("Attendance deleted successfully");
     }
+
+
 }

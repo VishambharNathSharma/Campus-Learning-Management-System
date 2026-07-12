@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/exams/")
+@RequestMapping("/api/exams")
 public class ExamController {
     private final ExamService examService;
     public ExamController(ExamService examService){
@@ -31,12 +31,12 @@ public class ExamController {
         return ResponseEntity.ok(examService.getExamById(id));
     }
 
-    @GetMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<ExamResponse> updateExam(@PathVariable Long id,@RequestBody ExamRequest request){
         return ResponseEntity.ok(examService.updateExam(id,request));
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteExam(@PathVariable Long id){
         examService.deleteExam(id);
         return ResponseEntity.ok("Exam deleted successfully");
