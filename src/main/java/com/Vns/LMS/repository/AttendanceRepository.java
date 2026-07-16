@@ -14,4 +14,9 @@ public interface AttendanceRepository extends JpaRepository<Attendance,Long> {
     );
     Long countByStudentIdAndAttendanceDateBetween(Long studentId,LocalDate startDate,LocalDate endDate);
     Long countByStudentIdAndPresentTrueAndAttendanceDateBetween(Long studentId,LocalDate startDate,LocalDate endDate);
+
+    Long countByStudentId(Long studentId);
+
+    Long countByStudentIdAndPresentTrue(Long studentId);
+
 }

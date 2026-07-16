@@ -1,0 +1,302 @@
+html {
+    font-size: 100%;
+    height: 100%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.container {
+    width: calc(100% - 13.75rem);
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 13.75rem 44rem 1fr;
+    grid-template-rows: 7.4375rem 1fr 1fr;
+}
+
+/* Offset content to account for fixed header and sidebar */
+.container.fixed-offset {
+    width:100%;
+    margin-top: 0;
+    
+}
+
+.header {
+    grid-row: 1 / 2;
+    grid-column: 1 / -1;
+    width: 100%;
+    height: 7.4375rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.25rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+   
+}
+
+.sidebar {
+    grid-row: 2 / 4;
+    grid-column: 1 / 2;
+    background-color: black;
+    width: 13.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: 7.4375rem; /* place below fixed header */
+    left: 0;
+    bottom: 0;
+    z-index: 900;
+    
+}
+
+.logo {
+    width: 2.5rem;
+    height: 1.375rem;
+    display: inline;
+}
+
+h1 {
+    display: inline;
+    font-family: 'Inter';
+    font-size: 1.5rem;
+    font-weight: medium;
+    margin: 0 1.25rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.navbar {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+    margin-left: auto;
+}
+
+a {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+.header h1 a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.alink {
+    color: black;
+}
+
+.blink {
+    padding: 0.5rem 1rem;
+    margin-left: 0.3125rem;
+    background-color: black;
+    color: white;
+    border-radius: 0.75rem;
+}
+
+.sidebar-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+    list-style-type: none;
+}
+
+li a {
+    text-decoration: none;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: medium;
+}
+body.darkmode {
+    color: white;
+    background-color: black;
+}
+
+.dark {
+    position: relative;
+    left: 40rem;
+    cursor: pointer;
+}
+
+body.darkmode .alink {
+    color: white;
+}
+
+body.darkmode {
+    color: white;
+    background-color: #111;
+}
+
+body.fadeout {
+    opacity: 0;
+}
+ 
+.summary{
+    grid-row: 2/3;
+    grid-column: 2/3;
+    font-style: "IBM Plex Sans Devanagari","Inter";
+   background: #254271;
+}
+.calendar{
+    grid-row: 2/3;
+    grid-column: 3/4;
+}
+.courses{
+    grid-row: 3/4;
+    grid-column: 2/3;
+    background-color:#303c6e;
+}
+.section{
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 1rem;
+    vertical-align: top;
+    font-style: "IBM Plex Sans Devanagari","Inter";
+    border: 0.2rem gainsboro solid;
+    box-sizing: border-box;
+    border-radius: 0.5rem;
+    background-color: darkcyan;
+    min-height: 12rem;
+    width: 9rem;
+}
+
+/* Course list inline layout */
+.course-list {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0.5rem 1rem;
+}
+.course-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem;
+    margin: 0.25rem;
+    border: #111 1px solid;
+    border-radius: 0.2rem;
+}
+.course-item img {
+    width: 4rem;
+    height: 3rem;
+    object-fit: cover;
+    border-radius: 0.25rem;
+}
+.course-item h3,
+.course-item p {
+    margin: 0;
+}
+#s2{
+    width: 12rem;
+}
+#calendar{
+    background:#28487a;
+    padding:20px;
+    grid-row: 2/3;
+    grid-column: 3/4;
+    min-height: 420px;
+    box-sizing: border-box;
+}
+.view-all{
+     font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    text-decoration: none;
+    color:aliceblue;
+    background-color: #111;
+    border-radius: 0.2rem;
+}
+.attendance-card{
+
+    width:350px;
+
+    background:#1f2937;
+
+    border-radius:12px;
+
+    padding:20px;
+
+    color:white;
+
+    text-align:center;
+
+}
+
+#attendanceChart{
+
+    width:250px !important;
+
+    height:250px !important;
+
+    margin:auto;
+
+}
+
+.attendance-info{
+
+    margin-top:20px;
+
+    display:flex;
+
+    justify-content:space-around;
+
+}
+.chart{
+    background-color: #1f2937;
+    grid-row: 3/4;
+    grid-column: 3/4;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#attendanceChart{
+    width: 250px !important;
+    height: 250px !important;
+    max-width: 100%;
+}
+footer{
+    grid-row: 4/5;
+    grid-column: 1/-1;
+    background-color: #111;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+
+}
+body.darkmode .alink {
+    color: white;
+}
+
+body.darkmode {
+    color: white;
+    background-color: #111;
+}
+
+body.darkmode .header {
+    background-color: #1f1f1f;
+    color: white;
+}

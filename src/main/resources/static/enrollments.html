@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Devanagari:wght@100;200;300;400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">  
+<link rel="stylesheet" href="enrollment.css">
+
+    <title>Home</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="loo.png" alt="logo" class="logo">
+            <h1><a href="index.html">Campus Learning Management System</a></h1>
+            <img class="dark" src="dark_mode.png" alt="darkmode">
+            <nav class="navbar">
+                <a href="about_us.html" class="alink">About Us</a>
+                <a href="index.html" class="blink">Logout</a>
+            </nav>
+        </div>
+        <div class="sidebar">
+            <ul class="sidebar-links">
+           <li><a href="TeacherHome.html">Home</a></li>
+            <li><a href="assignments.html">Assignment</a></li>
+            <li><a href="enrollments.html">Enrollments</a></li>
+            <li><a href="#" id="coursesLink">Courses</a></li>
+            </ul>
+        </div>
+        <div class="main_content">
+            <h1>Course Enrollments</h1>
+            <h4 style="margin-left: 1.2rem;">View students enrolled in your courses.</h4>
+            <div class="table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Student ID</th>
+                            <th>Student Name</th>
+                            <th>Course ID</th>
+                            <th>Course Name</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>John Doe</td>
+                            <td>101</td>
+                            <td>Introduction to Programming</td>
+                            <td>Jogndoe@gmail.com</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Jane Smith</td>
+                            <td>102</td>
+                            <td>Data Structures</td>
+                            <td>janesmith@gmail.com</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Michael Johnson</td>
+                            <td>103</td>
+                            <td>Database Systems</td>
+                            <td>michaeljohnson@gmail.com</td>
+                        </tr>
+                    </tbody>
+        </div>
+         </div>    
+    </div>
+        </div>
+    <script src="js/config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

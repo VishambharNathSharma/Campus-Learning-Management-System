@@ -16,6 +16,7 @@ body {
     position: relative;
     top: 0.125rem;
     left: 1.25rem;
+  
 }
 
 h1 {
@@ -113,6 +114,7 @@ form {
     font-weight: medium;
     margin-top: 0.75rem;
     align-self: flex-start;
+    cursor:pointer;
 }
 
 .input.error {
@@ -163,6 +165,7 @@ body.darkmode .alink {
 body.darkmode {
     color: white;
     background-color: #111;
+    cursor:pointer;
 }
 
 .header h1 a {
@@ -177,4 +180,13 @@ body {
 
 body.fadeout {
     opacity: 0;
+}
+footer{
+    grid-row: 4/5;
+    grid-column: 1/-1;
+    background-color: #111;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+
 }

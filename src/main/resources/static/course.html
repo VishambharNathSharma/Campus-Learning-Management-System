@@ -122,6 +122,29 @@ li a {
 #newassignment{
     display: none;
 }
+#coursesSection{
+    display: none;
+    background-color: rgb(211, 228, 234);
+    padding: 1rem;
+}
+#coursesSection table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+#coursesSection th,
+#coursesSection td{
+    padding: 0.75rem 1rem;
+    border: 0.0625rem solid #999;
+    text-align: center;
+}
+#coursesSection th{
+    background-color: black;
+    color: white;
+}
+#coursesSection tr:nth-child(even){
+    background-color: rgba(255,255,255,0.5);
+}
 .main_content{
     min-height:fit-content;
     max-height: 100vh;
@@ -223,7 +246,7 @@ span[id$='Error'] {
          <div class="header">
             <img src="loo.png" alt="logo" class="logo">
             <h1><a href="index.html">Campus Learning Management System</a></h1>
-            <img class="dark" src="dark_mode.png" alt="darkmode">
+           
             <nav class="navbar">
                 <a href="about_us.html" class="alink">About Us</a>
                 <a href="index.html" class="blink">Logout</a>
@@ -231,9 +254,9 @@ span[id$='Error'] {
         </div>
         <div class="sidebar">
             <ul class="sidebar-links">
-            <li><a href="home.html">Home</a></li>
-            <li><a href="profile.html">Profile</a></li>
-            <li><a href="dashboard.html">My Dashboard</a></li>
+            <li><a href="TeacherHome.html">Home</a></li>
+            <li><a href="assignments.html">Assignment</a></li>
+            <li><a href="enrollments.html">Enrollments</a></li>
             <li><a href="#" id="coursesLink">Courses</a></li>
             </ul>
         </div>
@@ -241,6 +264,7 @@ span[id$='Error'] {
             <div class="btn-background">
             <button  class="btn" onClick="toggleSection1()">New course</button>
             <button  class="btn" onClick="toggleSection2()">New assignment</button>
+            <button  class="btn" onClick="toggleSection3()">Courses</button>
             </div>
             <div class="form">
             <section id="newcourse">
@@ -315,8 +339,56 @@ span[id$='Error'] {
                 <button class="btn" type="submit">Create assignment</button>
                 </form>
             </section>
+            <!------------------------------Courses section------------------------------>
+            <section id="coursesSection">
+                <h1 class="h1">My Courses</h1>
+                <p class="sub">Courses currently assigned to you.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Course Title</th>
+                            <th>Course Code</th>
+                            <th>Credits</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Web Development Fundamentals</td>
+                            <td>WD101</td>
+                            <td>4</td>
+                            <td>2026/01/12</td>
+                            <td>2026/05/15</td>
+                            <td><button class="btn" style="margin:0;padding:0.4rem 0.8rem;">Delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Data Structures & Algorithms</td>
+                            <td>DSA201</td>
+                            <td>4</td>
+                            <td>2026/01/12</td>
+                            <td>2026/05/15</td>
+                            <td><button class="btn" style="margin:0;padding:0.4rem 0.8rem;">Delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>AI Fundamentals</td>
+                            <td>AI301</td>
+                            <td>3</td>
+                            <td>2026/01/12</td>
+                            <td>2026/05/15</td>
+                            <td><button class="btn" style="margin:0;padding:0.4rem 0.8rem;">Delete</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
         </div>
     </div>
+    <script src="js/config.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded',function(){
               const darkModeKey = 'darkMode';
@@ -345,13 +417,21 @@ span[id$='Error'] {
     });
     const course=document.getElementById("newcourse");
         const assignment = document.getElementById("newassignment");
+        const coursesSection = document.getElementById("coursesSection");
     window.toggleSection1= function toggleSection1(){
         course.style.display = 'block';
         assignment.style.display = 'none';
+        coursesSection.style.display = 'none';
     }
      window.toggleSection2= function toggleSection2(){
         course.style.display = 'none';
         assignment.style.display = 'block';
+        coursesSection.style.display = 'none';
+    }
+     window.toggleSection3= function toggleSection3(){
+        course.style.display = 'none';
+        assignment.style.display = 'none';
+        coursesSection.style.display = 'block';
     }
     document.querySelectorAll('a').forEach(link=>{
     link.addEventListener('click',function(e){
@@ -442,5 +522,11 @@ if (role === 'teacher') {
 
         });
     </script>
+
+    <script src="script.js"></script>
+    <footer>
+    <p>© 2026 Campus Learning Management System. All rights reserved.</p>
+</footer>
+
 </body>
 </html>

@@ -153,10 +153,15 @@ document.addEventListener('DOMContentLoaded', function() {
             if (validateAll()) {
                 const role = form.id === 'studentForm' ? 'student' : form.id === 'teacherForm' ? 'teacher' : (document.getElementById('role')?.value || 'student');
                 localStorage.setItem('role', role);
-                window.location.href = 'home.html';
-            } else {
+                if (role === 'teacher') {
+                    window.location.href = 'TeacherHome.html';
+                } else if (role === 'student') {
+                    window.location.href = 'StudentHome.html';
+                }
+             else {
                 var first = form.querySelector('.error');
                 if (first) first.focus();
+            }
             }
         });
     });
@@ -234,7 +239,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const role = document.getElementById('role')?.value || 'student';
     localStorage.setItem('role', role);
-    window.location.href = 'home.html';
+    if(role === 'teacher'){
+    window.location.href = 'TeacherHome.html';
+    }
+    else{
+    window.location.href = 'StudentHome.html';
+    }
 };
  const role = localStorage.getItem('role');
 

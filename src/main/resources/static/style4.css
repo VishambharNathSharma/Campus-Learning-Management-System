@@ -211,3 +211,12 @@ body.fadeout {
 #changeimg {
     cursor: pointer;
 }
+footer{
+    grid-row: 4/5;
+    grid-column: 1/-1;
+    background-color: #111;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+
+}

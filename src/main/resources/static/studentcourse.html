@@ -246,7 +246,29 @@ span[id$='Error'] {
     width: 100%;
     overflow: auto;
 }
+.course-container{
+    display:flex;
+    flex-wrap:wrap;
+    gap:30px;
+    margin-top:20px;
+}
 
+.course-card{
+    width:320px;
+    background:#fff;
+    border-radius:20px;
+    padding:20px;
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+
+.course-card h2{
+    margin:10px 0;
+}
+
+.course-card button{
+    width:100%;
+    margin-top:20px;
+}
 #browsecourses {
     padding: 1.25rem;
 }
@@ -302,14 +324,173 @@ span[id$='Error'] {
     cursor: pointer;
     width: fit-content;
 }
+.assignment_content{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+    padding: 0.2rem;
+    align-items: stretch;
+}
+.assign-item{
+    background-color: white;
+    box-shadow: 0 0.75rem 1rem rgba(0, 0, 0, 0.15);
+    border-radius: 1.25rem;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-family: 'IBM Plex Sans Devanagari','Inter';
+}
+.assign-item .assign-course{
+    font-size: 0.85rem;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.03rem;
+}
+.assign-item h3{
+    font-size: 1.15rem;
+    font-weight: 500;
+}
+.assign-item .assign-date{
+    font-size: 0.9rem;
+    color: #b33;
+    font-weight: 500;
+}
+.assign-item .assign-status{
+    align-self: flex-start;
+    background-color: #fff3cd;
+    color: #7a5b00;
+    font-size: 0.75rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 1rem;
+}
+.assign-item .assign-pdf{
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background-color: black;
+    color: white;
+    font-family: 'IBM Plex Sans Devanagari','Inter';
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    margin-top: 0.25rem;
+}
+.enroll{
+    background-color:#0B0404;
+    font-family: "IBM Plex Sans Devnagari";
+    color: #999;
+    width: 15rem;
+    height: 2rem;
+    border-radius: 2rem;
+    cursor: pointer;
+}
+.enroll.enrolled{
+    background-color: #2e7d32;
+    color: #fff;
+    border: 1px solid #2e7d32;
+}
+    .assignment-grid{
 
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+    gap:25px;
+
+    margin-top:30px;
+
+}
+
+.assignment-card{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.12);
+
+    transition:.3s;
+
+}
+
+.assignment-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.assignment-card h2{
+
+    margin-bottom:15px;
+
+    color:#1e3a8a;
+
+}
+
+.assignment-card p{
+
+    margin:10px 0;
+
+}
+
+.card-buttons{
+
+    margin-top:20px;
+
+}
+
+.view-btn{
+
+    width:100%;
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#2563eb;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+}
+
+.view-btn:hover{
+
+    background:#1d4ed8;
+
+}
+
+.status{
+
+    margin-top:18px;
+
+    font-weight:600;
+
+}
+
+.pending{
+
+    color:#f59e0b;
+
+}
 </style>
 <body>
        <div class="container">
          <div class="header">
             <img src="loo.png" alt="logo" class="logo">
             <h1><a href="index.html">Campus Learning Management System</a></h1>
-            <img class="dark" src="dark_mode.png" alt="darkmode">
+        
             <nav class="navbar">
                 <a href="about_us.html" class="alink">About Us</a>
                 <a href="index.html" class="blink">Logout</a>
@@ -317,46 +498,25 @@ span[id$='Error'] {
         </div>
         <div class="sidebar">
             <ul class="sidebar-links">
-            <li><a href="home.html">Home</a></li>
+            <li><a href="StudentHome.html">Home</a></li>
             <li><a href="profile.html">Profile</a></li>
             <li><a href="dashboard.html">My Dashboard</a></li>
-            <li><a href="#" id="coursesLink">Courses</a></li>
+            <li><a href="studentcourse.html" id="coursesLink">Courses</a></li>
             </ul>
         </div>
         <div class="main_content">
             <div class="btn-background">
             <button  class="btn" onClick="toggleSection1()">Browse Courses</button>
             <button  class="btn" onClick="toggleSection2()">Materials</button>
+            <button  class="btn" onClick="toggleSection4()">Assignments</button>
             <button  class="btn" onClick="toggleSection3()">Submit assignment</button>
             </div>
             
             <section class="course panel" id="browsecourses" hidden>
                     <h1 class="h1">Browse courses</h1>
 <p class="sub" style="position:relative;left:20px">Enroll in a course to access its materials, assignments, and grades.</p>
-            <div class="course_content">
-                     <div class="item1">
-                        <h5>Code</h5>
-                <h3>Title</h3><br>
-                <h5>Description</h5><br>
-                <h5>Faculty Name</h5>
-            </div>
-            <div class="item2">
-                <h5>Code</h5>
-                <h3>Title</h3><br>
-                <h5>Description</h5><br>
-                <h5>Faculty Name</h5>
-            </div>
-            <div class="item3">
-                 <h5>Code</h5>
-                <h3>Title</h3><br>
-                <h5>Description</h5><br>
-                <h5>Faculty Name</h5>
-            </div>
-            <div class="item4">
-                 <h5>Code</h5>
-                <h3>Title</h3><br>
-                <h5>Description</h5><br>
-                <h5>Faculty Name</h5>
+            <div class="course_content" id="course_container">
+
             </div>
         </section>
         <section class="course panel" id="materials" hidden>
@@ -368,6 +528,16 @@ span[id$='Error'] {
                 <option value="Course3">Course3</option>
             </select>
         </section>
+        <section class="course panel" id="assignmentslist" hidden>
+            <h1 id="courseTitle" >Assignments</h1>
+            <p type="sub" style="position:relative;left:20px">Assignments pending submission across your enrolled courses.</p>
+
+            <div id="assignmentContainer" class="assignment-grid">
+
+            </div>
+            </section>
+
+
              <section class="course panel" id="assignments" hidden>
                 <h1>Submit an Assignment</h1>
                 <p type="sub" style="position:relative;left:20px">Choose the assignment, then attach your work or paste a link.</p>
@@ -385,8 +555,9 @@ span[id$='Error'] {
             <button type="submit" id="assignmentsubmitbutton">Submit assignment</button>
              </section>  
             </div>
-            
+           <script src="js/config.js"></script>
     <script>
+            
           document.addEventListener('DOMContentLoaded',function(){
               const darkModeKey = 'darkMode';
 
@@ -415,7 +586,8 @@ span[id$='Error'] {
     const sections = {
         browsecourses: document.getElementById("browsecourses"),
         assignments: document.getElementById("assignments"),
-        materials: document.getElementById("materials")
+        materials: document.getElementById("materials"),
+        assignmentslist: document.getElementById("assignmentslist")
     };
 
     function showSection(sectionId) {
@@ -430,6 +602,13 @@ span[id$='Error'] {
         }
     }
 
+    document.querySelectorAll('.enroll').forEach(function(button) {
+        button.addEventListener('click', function() {
+            const isEnrolled = button.classList.toggle('enrolled');
+            button.textContent = isEnrolled ? 'Enrolled' : 'Enroll';
+        });
+    });
+
     window.toggleSection1 = function toggleSection1(){
         showSection('browsecourses');
     };
@@ -438,6 +617,9 @@ span[id$='Error'] {
     };
     window.toggleSection3 = function toggleSection3(){
         showSection('assignments');
+    };
+    window.toggleSection4 = function toggleSection4(){
+        showSection('assignmentslist');
     };
 
     showSection('browsecourses');
@@ -456,5 +638,14 @@ span[id$='Error'] {
   document.body.classList.remove('fadeout');
 });
     </script>
+    <footer>
+    <p>© 2026 Campus Learning Management System. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+
+
+
 </body>
+
 </html>

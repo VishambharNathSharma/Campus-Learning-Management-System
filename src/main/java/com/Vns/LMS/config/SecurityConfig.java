@@ -73,6 +73,23 @@ public class SecurityConfig {
 
                 .requestMatchers(HttpMethod.GET, "/api/marks/**")
                 .authenticated()
+                .requestMatchers(HttpMethod.GET,"/api/dashboard/**")
+                .authenticated()
+                .requestMatchers(HttpMethod.GET,"/api/dashboard/student/**")
+                .authenticated()
+                .requestMatchers(HttpMethod.GET, "/api/dashboard/teacher/**")
+                .hasAnyRole("ADMIN", "TEACHER")
+                .requestMatchers(HttpMethod.POST,"/api/assignments/**")
+                .hasAnyRole("ADMIN","TEACHER")
+
+                .requestMatchers(HttpMethod.PUT,"/api/assignments/**")
+                .hasAnyRole("ADMIN","TEACHER")
+
+                .requestMatchers(HttpMethod.DELETE,"/api/assignments/**")
+                .hasRole("ADMIN")
+
+                .requestMatchers(HttpMethod.GET,"/api/assignments/**")
+                .authenticated()
                 .anyRequest().authenticated()
         );
         return http.build();

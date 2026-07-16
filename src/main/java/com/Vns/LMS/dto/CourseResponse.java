@@ -15,6 +15,15 @@ public class CourseResponse {
     private LocalDate startDate;
     private LocalDate endDate;
     private List<String> learningObjectives;
+    private String teacherName;
+
+    public String getTeacherName() {
+        return teacherName;
+    }
+
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
+    }
 
     public CourseResponse(){
 

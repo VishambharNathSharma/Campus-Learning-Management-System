@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Devanagari:wght@100;200;300;400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style7.css">
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.17/index.global.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.17/index.global.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>  
+<title>Home</title>
+</head>
+<body>
+<div class="container fixed-offset">
+    <div class="header">
+        <img src="loo.png" alt="logo" class="logo">
+        <h1><a href="index.html">Campus Learning Management System</a></h1>
+        <img class="dark" src="dark_mode.png" alt="darkmode">
+        <nav class="navbar">
+            <a href="about_us.html" class="alink">About Us</a>
+            <a href="index.html" class="blink">Logout</a>
+        </nav>
+    </div>
+    <div class="sidebar">
+        <ul class="sidebar-links">
+            <li><a href="TeacherHome.html">Home</a></li>
+            <li><a href="assignments.html">Assignment</a></li>
+            <li><a href="enrollments.html">Enrollments</a></li>
+            <li><a href="#" id="coursesLink">Courses</a></li>
+        </ul>
+    </div>
+    <div class="summary">
+        <h1>Welcome Back, Vishambhar!</h1>
+        <p style="margin-left: 1.25rem;">Here's what happening with your courses today.</p>
+        <div class="section" id="1" style="margin: 0.3rem;">
+            <img src="book.png" alt="Book Icon" style="width:2rem;height: 2rem;margin-left: 1.25rem;">
+            <h5>My Courses</h5>
+            <h1>5</h1>
+            <a href="courses.html"><p>View all courses</p></a>
+        </div>
+         <div class="section" id="s2" style="margin: 0.3rem;">
+              <img src="account.png" alt="student Icon" style="width:2rem;height: 2rem;margin-left: 1.25rem;">
+            <h5>Total Students</h5>
+            <h1>3</h1>
+            <a href="courses.html"><p>View all enrollments</p></a>
+        </div>
+         <div class="section" id="3" style="margin: 0.3rem;">
+              <img src="subject.png" alt="Subject Icon" style="width:2rem;height: 2rem;margin-left: 1.25rem;">
+            <h5>Subjects</h5>
+            <h1>6</h1>
+            <a href="dashboard.html"><p>View all subjects</p></a>
+        </div>
+         <div class="section" id="4" style="margin: 0.3rem;">
+              <img src="task.png" alt="assignment Icon" style="width:2rem;height: 2rem;margin-left: 1.25rem;">
+            <h5>Assignments</h5>
+            <h1>6</h1>
+            <a href="profile.html"><p>View all assignments</p></a>
+        </div>
+    </div>
+    <div id="calendar"></div>
+    <div class="courses">
+        <h1>My Courses</h1>
+        <button class="view-all" onclick="window.location.href='courses.html'">View All</button>
+        <div class="course-list">
+            <div class="course-item">
+                <img src="school.png" alt="Course 1">
+                <h3>Introduction to Programming</h3> <p style="display:inline;">Teacher: John Doe</p>
+            </div>
+            <div class="course-item">
+                <img src="school.png" alt="Course 2">
+                <h3>Data Structures and Algorithms</h3> <p style="display:inline;">Teacher: John Doe</p>
+            </div>
+            <div class="course-item">
+                <img src="school.png" alt="Course 3">
+                <h3>Web Development</h3> <p style="display:inline;">Teacher: John Doe</p>
+            </div>
+        </div>
+    </div>
+    <div class="chart">
+         <h3>Enrollments</h3>
+
+    <canvas id="attendanceChart"></canvas>
+
+    <div class="attendance-info">
+        <p>🟢 Enrolled : 88</p>
+        <p>🔴 Not Enrolled : 12</p>
+    </div>
+    </div>
+</div>
+</div>
+</div>
+<script src="js/config.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            height: 400
+        });
+        calendar.render();
+    });
+    const ctx = document.getElementById("attendanceChart");
+
+new Chart(ctx, {
+
+    type: "pie",
+
+    data: {
+
+        labels: ["Enrolled", "Not enrolled"],
+
+        datasets: [{
+
+            data: [88,12],
+
+            backgroundColor: [
+
+                "#22c55e",
+
+                "#ef4444"
+
+            ]
+
+        }]
+
+    },
+
+    options:{
+
+        plugins:{
+
+            legend:{
+
+                position:"bottom"
+
+            }
+
+        }
+
+    }
+
+});
+</script>
+<script src="script.js"></script>
+<footer>
+    <p>© 2026 Campus Learning Management System. All rights reserved.</p>
+</footer>
+</body>
+</html>

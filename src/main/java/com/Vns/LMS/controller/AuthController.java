@@ -32,16 +32,27 @@ public class AuthController {
         return new ResponseEntity<>("User Registered successfully", HttpStatus.CREATED);
     }
     @PostMapping("/login")
-    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest){
-       authenticationManager.authenticate(
-               new UsernamePasswordAuthenticationToken(
-               loginRequest.getEmail(),
-               loginRequest.getPassword()
-               )
-       );
-    String token = jwtService.generateToken(loginRequest.getEmail());
-    return ResponseEntity.ok(
-            new LoginResponse(token, "Login Successful")
-    );
+    public ResponseEntity<LoginResponse> login(
+            @RequestBody LoginRequest loginRequest) {
+
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        loginRequest.getEmail(),
+                        loginRequest.getPassword()
+                )
+        );
+
+        User user = userService.findByEmail(loginRequest.getEmail());
+
+        String token = jwtService.generateToken(user.getEmail());
+
+        return ResponseEntity.ok(
+                new LoginResponse(
+                        token,
+                        "Login Successful",
+                        user.getId(),
+                        user.getRole().name()
+                )
+        );
     }
 }

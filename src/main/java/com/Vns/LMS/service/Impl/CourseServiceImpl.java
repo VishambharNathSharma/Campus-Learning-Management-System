@@ -69,6 +69,10 @@ public class CourseServiceImpl implements CourseService {
                     response.setStartDate(course.getStartDate());
                     response.setEndDate(course.getEndDate());
                     response.setLearningObjectives(course.getLearningObjectives());
+                    response.setTeacherName(
+                            course.getTeacher().getFirstName() + " " +
+                                    course.getTeacher().getLastName()
+                    );
                     return response;
                 }
         )

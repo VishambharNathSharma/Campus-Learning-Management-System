@@ -182,3 +182,12 @@ body.darkmode .about-heading h2 {
 body.fadeout {
     opacity: 0;
 }
+footer{
+    grid-row: 4/5;
+    grid-column: 1/-1;
+    background-color: #111;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+
+}

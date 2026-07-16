@@ -1,0 +1,193 @@
+html {
+    font-size: 100%;
+    height: 100%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.container {
+    width: calc(100% - 13.75rem);
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 13.75rem 44rem 1fr;
+    grid-template-rows: 7.4375rem 1fr 1fr;
+}
+
+/* Offset content to account for fixed header and sidebar */
+.container.fixed-offset {
+    width:100%;
+    margin-top: 0;
+    
+}
+
+.header {
+    grid-row: 1 / 2;
+    grid-column: 1 / -1;
+    width: 100%;
+    height: 7.4375rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.25rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+   
+}
+
+.sidebar {
+    grid-row: 2 / 4;
+    grid-column: 1 / 2;
+    background-color: black;
+    width: 13.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: 7.4375rem; /* place below fixed header */
+    left: 0;
+    bottom: 0;
+    z-index: 900;
+    
+}
+
+.logo {
+    width: 2.5rem;
+    height: 1.375rem;
+    display: inline;
+}
+
+h1 {
+    display: inline;
+    font-family: 'Inter';
+    font-size: 1.5rem;
+    font-weight: medium;
+    margin: 0 1.25rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.navbar {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+    margin-left: auto;
+}
+
+a {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+.header h1 a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.alink {
+    color: black;
+}
+
+.blink {
+    padding: 0.5rem 1rem;
+    margin-left: 0.3125rem;
+    background-color: black;
+    color: white;
+    border-radius: 0.75rem;
+}
+
+.sidebar-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+    list-style-type: none;
+}
+
+li a {
+    text-decoration: none;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: medium;
+}
+body.darkmode {
+    color: white;
+    background-color: black;
+}
+
+.dark {
+    position: relative;
+    left: 40rem;
+    cursor: pointer;
+}
+
+body.darkmode .alink {
+    color: white;
+}
+
+body.darkmode {
+    color: white;
+    background-color: #111;
+}
+
+body.fadeout {
+    opacity: 0;
+}
+ 
+.container {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 13.75rem 1fr;
+    grid-template-rows: 7.4375rem 1fr;
+}
+.main_content{
+    grid-row:2/3;
+    grid-column:2/3;
+    font-family: "Inter";
+}
+table{
+    color: aqua;
+
+}
+th,td{
+    padding:1rem;
+    border:0.2rem solid cyan;
+    border-radius:0.2rem;
+} 
+th{
+    background-color: black;
+}
+table{
+    margin:2rem 5rem 5rem 1rem;
+    
+}
+body.darkmode .alink {
+    color: white;
+}
+
+body.darkmode {
+    color: white;
+    background-color: #111;
+}
+
+body.darkmode .header {
+    background-color: #1f1f1f;
+    color: white;
+}
