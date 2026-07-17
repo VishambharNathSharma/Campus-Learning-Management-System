@@ -70,7 +70,8 @@ public class SecurityConfig {
 
                 .requestMatchers(HttpMethod.DELETE, "/api/marks/**")
                 .hasRole("ADMIN")
-
+                .requestMatchers("/api/users/profile-picture")
+                .authenticated()
                 .requestMatchers(HttpMethod.GET, "/api/marks/**")
                 .authenticated()
                 .requestMatchers(HttpMethod.GET,"/api/dashboard/**")
@@ -81,7 +82,8 @@ public class SecurityConfig {
                 .hasAnyRole("ADMIN", "TEACHER")
                 .requestMatchers(HttpMethod.POST,"/api/assignments/**")
                 .hasAnyRole("ADMIN","TEACHER")
-
+                .requestMatchers("/api/student/profile")
+                .authenticated()
                 .requestMatchers(HttpMethod.PUT,"/api/assignments/**")
                 .hasAnyRole("ADMIN","TEACHER")
 

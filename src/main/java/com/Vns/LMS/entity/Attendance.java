@@ -30,11 +30,21 @@ public class Attendance {
     @Column(nullable = false)
     private Boolean present;
 
+    public Double getPercentage() {
+        return percentage;
+    }
+
+    public void setPercentage(Double percentage) {
+        this.percentage = percentage;
+    }
+
+    @Column(nullable = false)
+    private Double percentage;
     public Attendance(){
 
     }
 
-    public Attendance(Long id,User student,Course course,LocalDate attendanceDate,Boolean present){
+    public Attendance(Long id,Long percentage,User student,Course course,LocalDate attendanceDate,Boolean present){
         this.id=id;
         this.course=course;
         this.attendanceDate=attendanceDate;

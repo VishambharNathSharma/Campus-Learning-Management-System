@@ -1,9 +1,11 @@
 package com.Vns.LMS.repository;
 
 import com.Vns.LMS.entity.Attendance;
+import com.Vns.LMS.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 public interface AttendanceRepository extends JpaRepository<Attendance,Long> {
@@ -18,5 +20,5 @@ public interface AttendanceRepository extends JpaRepository<Attendance,Long> {
     Long countByStudentId(Long studentId);
 
     Long countByStudentIdAndPresentTrue(Long studentId);
-
+    List<Attendance> findByStudent(User user);
 }

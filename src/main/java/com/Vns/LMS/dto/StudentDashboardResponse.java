@@ -6,16 +6,33 @@ import java.util.List;
 
 public class StudentDashboardResponse {
     private String studentName;
-
+    private String email;
     private Long totalCourses;
     private String rollno;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
+    }
+
     private double totalAttendance;
     private Double averagePercentage;
     private Integer totalAssignments;
     private Integer totalExams;
     private Long presentAttendance;
     private List<StudentCourseResponse> enrolledCourses;
-
+    private String profilePicture;
     public List<StudentCourseResponse> getEnrolledCourses() {
         return enrolledCourses;
     }

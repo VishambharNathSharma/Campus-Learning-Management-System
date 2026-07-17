@@ -22,11 +22,22 @@ private String password;
 @Enumerated(EnumType.STRING)
 @Column(nullable = false)
 private Role role;
+    @Column(name = "profile_picture")
+    private String profilePicture;
 //No-Args Constructor
     public User(){
     }
+
+    public String getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
+    }
+
     //All-Args Constructor
-    public User(Long id,String firstName,String lastName,String email,String rollNo,String password,Role role){
+    public User(Long id,String firstName,String lastName,String email,String rollNo,String password,Role role,String profilePicture){
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -34,6 +45,7 @@ private Role role;
         this.rollNo = rollNo;
         this.password = password;
         this.role = role;
+        this.profilePicture=profilePicture;
     }
     //getters
 

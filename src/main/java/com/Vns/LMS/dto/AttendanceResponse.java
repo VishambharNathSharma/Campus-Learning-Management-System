@@ -9,6 +9,26 @@ public class AttendanceResponse {
     private String courseName;
     private LocalDate attendanceDate;
     private Boolean present;
+
+    private Integer total;
+
+    public Integer getTotal() {
+        return total;
+    }
+
+    public void setTotal(Integer total) {
+        this.total = total;
+    }
+
+    public Double getPercentage() {
+        return percentage;
+    }
+
+    public void setPercentage(Double percentage) {
+        this.percentage = percentage;
+    }
+
+    private Double percentage;
     public AttendanceResponse(){
 
     }

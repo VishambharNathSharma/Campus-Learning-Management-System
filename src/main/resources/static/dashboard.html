@@ -33,36 +33,34 @@
         </div>
         <div class="main-content">
             <section class="heading">
-            <h2>Welcome Back! STUDENT NAME</h2>
+            <h2>Welcome Back! <span id="welcomeName"></span></h2>
             </section>
             <div class="dashboard-grid">
             <div class="item1">
                 <h4>Enrollments</h4><br>
-                <h5>Courses: 0</h5><br>
-                <h5>Total Courses: 0</h5>
+                <span id="totalCourses"></span>
             </div>
             <div class="item2">
-                <h5>Name: </h5>
-                <h5>Email: </h5>
+                <h5>Present Attendance:<span id="presentAttendance"></span> </h5>
+                <h5>Total Attendance: <span id="totalAttendance"></span></h5>
             </div>
             <div class="item3">
-                 <h5 id="h">Assignment Total: </h5>    
-                <h5>Assignment Submitted: </h5>
+                 <h5 id="h">Assignment Total:<span id="assignmentTotal"></span> </h5>
+                <h5>Total Exams:<span id="totalExams"></span> </h5>
             </div>
             <div class="item4">
-                 <h4>Courses </h4>
-                <h5>Course 1 </h5>
-                <h5>Course 2 </h5>
-                <h5>Course 3 </h5>
+                 <h4>Email:<span id="email"></span> </h4>
+                <h5>Roll No:<span id="rollNo"></span></h5>
             </div>
             <div class="item5">
-                <h1 class="bigboy">Total Marks Obtained: </h1>
+                <h1 class="bigboy">Total exams:<span id="dashboardtotalExams"> Total Courses: </span>&nbsp;<span id="dashboardTotalCourses"></span></h1>
             </div>
             </div>
         </div>
 
     </div>
     <script src="js/config.js"></script>
+    <script src="js/studentdashboard.js"></script>
     <script src="script.js"></script>
     <footer>
     <p>© 2026 Campus Learning Management System. All rights reserved.</p>
