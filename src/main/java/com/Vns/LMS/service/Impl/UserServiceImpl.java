@@ -29,6 +29,9 @@ public class UserServiceImpl implements UserService {
         if(userRepository.existsByEmail(request.getEmail())){
             throw new RuntimeException("Email already exists");
         }
+        if (userRepository.existsByRollNo(request.getRollNo())) {
+            throw new RuntimeException("Roll Number already exists");
+        }
         User user = new User();
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
