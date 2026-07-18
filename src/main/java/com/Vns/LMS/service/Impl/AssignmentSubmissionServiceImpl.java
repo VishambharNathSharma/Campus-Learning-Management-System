@@ -191,7 +191,16 @@ public class AssignmentSubmissionServiceImpl
 
     }
 
+    @Override
+    public List<SubmissionResponse> getAllSubmissions() {
 
+        return submissionRepository
+                .findAllByOrderBySubmittedAtDesc()
+                .stream()
+                .map(this::mapToResponse)
+                .collect(Collectors.toList());
+
+    }
 
 
 

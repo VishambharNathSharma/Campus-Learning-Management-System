@@ -1,9 +1,6 @@
 package com.Vns.LMS.service.Impl;
 
-import com.Vns.LMS.dto.DashboardResponse;
-import com.Vns.LMS.dto.StudentCourseResponse;
-import com.Vns.LMS.dto.StudentDashboardResponse;
-import com.Vns.LMS.dto.TeacherDashboardResponse;
+import com.Vns.LMS.dto.*;
 import com.Vns.LMS.entity.Course;
 import com.Vns.LMS.entity.Enrollment;
 import com.Vns.LMS.entity.Marks;
@@ -11,8 +8,11 @@ import com.Vns.LMS.entity.User;
 import com.Vns.LMS.enums.Role;
 import com.Vns.LMS.repository.*;
 import com.Vns.LMS.service.DashboardService;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -116,26 +116,66 @@ public class DashboardServiceImpl implements DashboardService {
         return response;
     }
         @Override
-        public TeacherDashboardResponse getTeacherDashboard(Long teacherId) {
+        public TeacherDashboardResponse getTeacherDashboard() {
 
-            User teacher = userRepository.findById(teacherId)
+            Authentication authentication =
+                    SecurityContextHolder.getContext().getAuthentication();
+
+            String email = authentication.getName();
+            User teacher = userRepository.findByEmail(email)
                     .orElseThrow(() -> new RuntimeException("Teacher not found"));
 
-            TeacherDashboardResponse response = new TeacherDashboardResponse();
+            TeacherDashboardResponse response =
+                    new TeacherDashboardResponse();
 
             response.setTeacherName(
                     teacher.getFirstName() + " " + teacher.getLastName());
 
+            response.setEmail(teacher.getEmail());
+
+            Long teacherId1 = teacher.getId();
+
+            // Total Courses
             response.setTotalCoursesCreated(
-                    courseRepository.countByTeacherId(teacherId));
+                    courseRepository.countByTeacherId(teacherId1));
 
-            response.setTotalStudentsEnrolled(
-                    enrollmentRepository.countByCourseTeacherId(teacherId));
-
-
+            // Total Assignments
             response.setTotalAssignmentsCreated(
-                    assignmentRepository.countByCourseTeacherId(teacherId)
-            );
+                    assignmentRepository.countByCourseTeacherId(teacherId1));
+
+            // Courses
+            List<Course> courses =
+                    courseRepository.findByTeacherId(teacherId1);
+
+            List<CourseResponse> courseResponses =
+                    new ArrayList<>();
+
+            long totalStudents = 0;
+
+            for (Course course : courses) {
+
+                CourseResponse courseResponse =
+                        new CourseResponse();
+
+                courseResponse.setId(course.getId());
+
+                courseResponse.setCourseName(course.getCourseName());
+
+                Long studentCount =
+                        enrollmentRepository.countByCourseId(course.getId());
+
+                courseResponse.setStudentCount(studentCount);
+
+                totalStudents += studentCount;
+
+                courseResponses.add(courseResponse);
+            }
+
+            response.setCourses(courseResponses);
+
+            response.setTotalStudents(totalStudents);
+
+            response.setTotalExams(response.getTotalExams());
 
             return response;
         }

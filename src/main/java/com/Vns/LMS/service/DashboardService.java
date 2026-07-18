@@ -7,5 +7,5 @@ import com.Vns.LMS.dto.TeacherDashboardResponse;
 public interface DashboardService {
     DashboardResponse getDashboardStatistics();
     StudentDashboardResponse getStudentDashboard(Long studentId);
-    TeacherDashboardResponse getTeacherDashboard(Long teacherId);
+    TeacherDashboardResponse getTeacherDashboard();
 }

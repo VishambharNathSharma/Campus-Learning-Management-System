@@ -16,7 +16,7 @@ public interface AssignmentSubmissionService {
             String notes,
             MultipartFile file
     );
-
+    List<SubmissionResponse> getAllSubmissions();
 
     List<SubmissionResponse> getStudentSubmissions(Long studentId);
 

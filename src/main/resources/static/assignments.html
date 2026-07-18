@@ -249,6 +249,7 @@ th{
     border-radius:0.2rem;
     font-family:"Inter";
     color:whitesmoke;
+    cursor:pointer;
 }
     </style>
     <script>
@@ -316,7 +317,7 @@ function toggleSection3() {
             <button  class="btn" id="newAssignmentBtn" onClick="toggleSection2()">New assignment</button>
             <button  class="btn" id="submissionsBtn" onClick="toggleSection3()">Assignment submissions</button>
             </div>
-        
+        <section id="assignmentListSection">
         <div class="table">
             <h1 class="Assignment_header">Assignments</h1>
             <table>
@@ -329,52 +330,22 @@ function toggleSection3() {
                     <th>Date</th>
                     <th>Actions</th>
                 </thead>
-                <tbody>
-                    <tr>
-                    <td>1</td>
-                    
-                    <td>Web Development Fundamentals</td>
-                   <td>Assignment 1</td>
-                  <td style="text-align: center;">1</td>
-                   <td>File Upload</td>
-                   <td>2026/12/13</td>
-                   <td><button class="dlt">Delete</button></td></tr>
+                <tbody id="assignmentTableBody">
+
                 </tbody>
-                <tbody>
-                    <tr>
-                    <td>2</td>
-                    <td>Data Stuctures & Algorithms</td>
-                      <td>Assignment 1</td>
-                      <td style="text-align: center;">1</td>
-                      <td>File Upload</td>
-                      <td>2026/12/06</td>
-                      <td><button class="dlt">Delete</button></td>
-                      </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                    <td>3</td>
-                    <td>AI Fundamentals</td>
-                      <td>Assignment 1</td>
-                      <td style="text-align: center;">1</td>
-                      <td>Plain Text</td>
-                      <td>2025/11/09</td>
-                     <td><button class="dlt">Delete</button></td>
-                </tr>
-                </tbody>
+
             </table>
         </div>
+            </section>
         <section id="newassignment">
                 <h1 class="h1">Create an assignment</h1>
                 <h5 class="h1">Attach this assignment to one of your existing courses</h5>
-                <form class="assignmentform">
+                <form class="assignmentform" id="assignmentForm">
                 <fieldset>
                     <legend style="color:#111">BASICS</legend>
                     <label for="course" class="label">Course</label><br>
                     <select id="assignment">
-                        <option value="course1"></option>
-                        <option value="course2"></option>
-                        <option value="course3"></option>
+
                     </select><br>
                     <label for="assignmenttitle" class="label">Assignment Title</label><br>
                     <input type="text" name="assignment" class="input" id="assignmenttitleinput"><br>
@@ -386,7 +357,7 @@ function toggleSection3() {
                     <label for="grading" class="label">Maximum Marks</label><br>
                     <input type="number"  name ="grading" class="input" id="marksinput"><br>
                     <label for="grading" class="label">Submission Type</label><br>
-                    <select>
+                    <select id="submissionType">
                         <option value="FileUpload">File Upload</option>
                         <option value="Textentry">Text entry</option>
                     </select>
@@ -395,7 +366,7 @@ function toggleSection3() {
                 <fieldset>
                     <legend style="color:#111">DEADLINE</legend>
                     <label for="deadline" class="label">Due date&time</label><br>
-                    <input type="datetime-local" name="deadline" class="input">
+                    <input type="datetime-local" name="deadline" class="input" id="dueDateTime">
 
                 </fieldset>
                 <button class="btn" type="submit">Create assignment</button>
@@ -408,51 +379,26 @@ function toggleSection3() {
                     <tr>
                     <th>#</th>
                     <th>Student Name</th>
-                    <th>Roll No</th>
-                    <th>Assignment</th>
+
+                    <th>Status</th>
                     <th>Title</th>
                     <th>Submitted On</th>
                     <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                    <td>1</td>
-                    <td>Aarav Sharma</td>
-                    <td>21CS045</td>
-                    <td>Assignment 1</td>
-                    <td>Web Development Fundamentals</td>
-                    <td>2026/12/10</td>
-                    <td><button class="dlt">View</button></td>
-                    </tr>
+                <tbody  id="submissionTableBody">
+
                 </tbody>
-                <tbody>
-                    <tr>
-                    <td>2</td>
-                    <td>Isha Verma</td>
-                    <td>21CS078</td>
-                    <td>Assignment 1</td>
-                    <td>Data Stuctures & Algorithms</td>
-                    <td>2026/12/05</td>
-                    <td><button class="dlt">View</button></td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                    <td>3</td>
-                    <td>Rohan Gupta</td>
-                    <td>21CS012</td>
-                    <td>Assignment 1</td>
-                    <td>AI Fundamentals</td>
-                    <td>2025/11/08</td>
-                    <td><button class="dlt">View</button></td>
-                    </tr>
-                </tbody>
+
+
             </table>
         </section>
         </div>
     </div>
     <script src="js/config.js"></script>
+    <script src="js/assignment.js"></script>
+    <script src="js/assignmentcreation.js"></script>
+    <script src="js/submissions.js"></script>
     <script src="script.js"></script>
 
         <footer>

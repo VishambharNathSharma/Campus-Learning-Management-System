@@ -41,7 +41,21 @@ public class SecurityConfig {
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(jwtAuthenticationfilter, UsernamePasswordAuthenticationFilter.class)
         .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/auth/**").permitAll()
+                .requestMatchers("/api/auth/**", "/",
+                        "/index.html",
+                        "/login.html"    ,            "/css/**",
+                        "/js/**",
+                        "/images/**",
+                        "/uploads/**",
+
+                        "/*.css",
+                        "/*.js",
+                        "/*.png",
+                        "/*.jpg",
+                        "/*.jpeg",
+                        "/*.gif",
+                        "/*.ico"
+                ).permitAll()
                 .requestMatchers("/api/enrollments/**").permitAll()
                 .requestMatchers("/api/courses/**").permitAll()
                 .requestMatchers("/api/student/**").hasRole("STUDENT")

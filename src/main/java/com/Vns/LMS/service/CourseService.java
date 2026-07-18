@@ -11,4 +11,5 @@ public interface CourseService {
      CourseResponse updateCourse(Long id,CourseRequest request);
      CourseResponse createCourse(CourseRequest request);
     void deleteCourse(Long id);
+    List<CourseResponse> getCoursesByTeacher(Long teacherId);
 }

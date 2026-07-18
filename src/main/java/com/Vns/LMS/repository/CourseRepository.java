@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface CourseRepository extends JpaRepository<Course,Long> {
     long countByTeacherId(Long teacherId);
-    List<Enrollment> findByStudentId(Long studentId);
+    List<Course> findByTeacherId(Long teacherId);
 }

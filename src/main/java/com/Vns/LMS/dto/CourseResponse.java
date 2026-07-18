@@ -16,6 +16,15 @@ public class CourseResponse {
     private LocalDate endDate;
     private List<String> learningObjectives;
     private String teacherName;
+    private Long studentCount;
+
+    public Long getStudentCount() {
+        return studentCount;
+    }
+
+    public void setStudentCount(Long studentCount) {
+        this.studentCount = studentCount;
+    }
 
     public String getTeacherName() {
         return teacherName;

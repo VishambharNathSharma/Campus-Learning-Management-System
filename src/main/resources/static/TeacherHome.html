@@ -35,30 +35,30 @@
         </ul>
     </div>
     <div class="summary">
-        <h1>Welcome Back, Vishambhar!</h1>
+        <h1>Welcome Back, <span id="teacherName"></span></h1>
         <p style="margin-left: 1.25rem;">Here's what happening with your courses today.</p>
         <div class="section" id="1" style="margin: 0.3rem;">
             <img src="book.png" alt="Book Icon" style="width:2rem;height: 2rem;margin-left: 1.25rem;">
             <h5>My Courses</h5>
-            <h1>5</h1>
+            <span id="totalCourses"></span>
             <a href="courses.html"><p>View all courses</p></a>
         </div>
          <div class="section" id="s2" style="margin: 0.3rem;">
               <img src="account.png" alt="student Icon" style="width:2rem;height: 2rem;margin-left: 1.25rem;">
             <h5>Total Students</h5>
-            <h1>3</h1>
+            <span id="totalStudents"></span>
             <a href="courses.html"><p>View all enrollments</p></a>
         </div>
          <div class="section" id="3" style="margin: 0.3rem;">
               <img src="subject.png" alt="Subject Icon" style="width:2rem;height: 2rem;margin-left: 1.25rem;">
-            <h5>Subjects</h5>
-            <h1>6</h1>
-            <a href="dashboard.html"><p>View all subjects</p></a>
+            <h5>Exams</h5>
+            <span id="totalExams"></span>
+            <a href="dashboard.html"><p>View all Exams</p></a>
         </div>
          <div class="section" id="4" style="margin: 0.3rem;">
               <img src="task.png" alt="assignment Icon" style="width:2rem;height: 2rem;margin-left: 1.25rem;">
             <h5>Assignments</h5>
-            <h1>6</h1>
+            <span id="totalAssignments"></span>
             <a href="profile.html"><p>View all assignments</p></a>
         </div>
     </div>
@@ -66,19 +66,8 @@
     <div class="courses">
         <h1>My Courses</h1>
         <button class="view-all" onclick="window.location.href='courses.html'">View All</button>
-        <div class="course-list">
-            <div class="course-item">
-                <img src="school.png" alt="Course 1">
-                <h3>Introduction to Programming</h3> <p style="display:inline;">Teacher: John Doe</p>
-            </div>
-            <div class="course-item">
-                <img src="school.png" alt="Course 2">
-                <h3>Data Structures and Algorithms</h3> <p style="display:inline;">Teacher: John Doe</p>
-            </div>
-            <div class="course-item">
-                <img src="school.png" alt="Course 3">
-                <h3>Web Development</h3> <p style="display:inline;">Teacher: John Doe</p>
-            </div>
+        <div class="course-list" id="courseContainer">
+
         </div>
     </div>
     <div class="chart">
@@ -87,14 +76,15 @@
     <canvas id="attendanceChart"></canvas>
 
     <div class="attendance-info">
-        <p>🟢 Enrolled : 88</p>
-        <p>🔴 Not Enrolled : 12</p>
+        <p>🟢 Enrolled :<span id="enrolled"></span> </p>
+        <p>🔴 Total Students :<span id="Total"></span> </p>
     </div>
     </div>
 </div>
 </div>
 </div>
 <script src="js/config.js"></script>
+<script src="js/teacherDashboard.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
@@ -103,46 +93,10 @@
             height: 400
         });
         calendar.render();
-    });
-    const ctx = document.getElementById("attendanceChart");
 
-new Chart(ctx, {
 
-    type: "pie",
 
-    data: {
 
-        labels: ["Enrolled", "Not enrolled"],
-
-        datasets: [{
-
-            data: [88,12],
-
-            backgroundColor: [
-
-                "#22c55e",
-
-                "#ef4444"
-
-            ]
-
-        }]
-
-    },
-
-    options:{
-
-        plugins:{
-
-            legend:{
-
-                position:"bottom"
-
-            }
-
-        }
-
-    }
 
 });
 </script>

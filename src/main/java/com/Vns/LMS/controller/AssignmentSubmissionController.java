@@ -71,7 +71,14 @@ public class AssignmentSubmissionController {
     }
 
 
+    @GetMapping("/submissions")
+    public ResponseEntity<List<SubmissionResponse>> getAllSubmissions() {
 
+        return ResponseEntity.ok(
+                service.getAllSubmissions()
+        );
+
+    }
 
     @GetMapping("/assignment/{assignmentId}")
     public ResponseEntity<List<SubmissionResponse>> getAssignmentSubmissions(

@@ -12,4 +12,5 @@ public interface EnrollmentService {
     List<EnrollmentResponse> getEnrollmentsByStudent(Long studentId);
     List<EnrollmentResponse> getEnrollmentsByCourse(Long courseId);
     void deleteEnrollment(Long id);
+    List<EnrollmentResponse> getEnrollmentsByTeacher(Long teacherId);
 }

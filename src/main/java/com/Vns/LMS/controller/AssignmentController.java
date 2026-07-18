@@ -69,4 +69,12 @@ public class AssignmentController {
 
         return ResponseEntity.ok("Assignment deleted successfully");
     }
+    @GetMapping("/teacher/{teacherId}")
+    public ResponseEntity<List<AssignmentResponse>> getAssignmentsByTeacher(
+            @PathVariable Long teacherId) {
+
+        return ResponseEntity.ok(
+                assignmentService.getAssignmentsByTeacher(teacherId)
+        );
+    }
 }

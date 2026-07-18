@@ -11,6 +11,7 @@ import com.Vns.LMS.repository.CourseRepository;
 import com.Vns.LMS.service.AssignmentService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -137,5 +138,23 @@ public class AssignmentServiceImpl implements AssignmentService {
         assignmentRepository.delete(assignment);
     }
 
+    @Override
+    public List<AssignmentResponse> getAssignmentsByTeacher(Long teacherId) {
 
+        List<Course> courses = courseRepository.findByTeacherId(teacherId);
+
+        List<Assignment> assignments = new ArrayList<>();
+
+        for (Course course : courses) {
+
+            assignments.addAll(
+                    assignmentRepository.findByCourseId(course.getId())
+            );
+
+        }
+
+        return assignments.stream()
+                .map(this::mapToResponse)
+                .toList();
+    }
 }

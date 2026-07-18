@@ -112,5 +112,34 @@ public class CourseServiceImpl implements CourseService {
     }
     courseRepository.deleteById(id);
     }
+    @Override
+    public List<CourseResponse> getCoursesByTeacher(Long teacherId) {
+
+        return courseRepository.findByTeacherId(teacherId)
+                .stream()
+                .map(this::mapToResponse)
+                .toList();
+
+    }
+    private CourseResponse mapToResponse(Course course) {
+
+        CourseResponse response = new CourseResponse();
+
+        response.setId(course.getId());
+        response.setCourseCode(course.getCourseCode());
+        response.setCourseName(course.getCourseName());
+        response.setDescription(course.getDescription());
+
+
+        if (course.getTeacher() != null) {
+            response.setTeacherName(
+                    course.getTeacher().getFirstName()
+                            + " "
+                            + course.getTeacher().getLastName()
+            );
+        }
+
+        return response;
+    }
 
 }

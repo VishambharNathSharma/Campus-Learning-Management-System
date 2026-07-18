@@ -115,5 +115,15 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 
         return response;
     }
+    @Override
+    public List<EnrollmentResponse> getEnrollmentsByTeacher(Long teacherId) {
+
+        List<Enrollment> enrollments =
+                enrollmentRepository.findByCourseTeacherId(teacherId);
+
+        return enrollments.stream()
+                .map(this::mapToResponse)
+                .toList();
+    }
 
 }

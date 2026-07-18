@@ -18,5 +18,6 @@ public interface AssignmentService {
 
     void deleteAssignment(Long id);
     List<AssignmentResponse> getAssignmentsByCourse(Long courseId);
+    List<AssignmentResponse> getAssignmentsByTeacher(Long teacherId);
 
 }

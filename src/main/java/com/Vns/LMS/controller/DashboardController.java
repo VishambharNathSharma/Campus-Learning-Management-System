@@ -29,11 +29,11 @@ public class DashboardController {
     public ResponseEntity<StudentDashboardResponse> getStudentDashboard(@PathVariable Long studentId){
         return ResponseEntity.ok(dashboardService.getStudentDashboard(studentId));
     }
-    @GetMapping("/teacher/{teacherId}")
+    @GetMapping("/teacher")
     public ResponseEntity<TeacherDashboardResponse> getTeacherDashboard(
-            @PathVariable Long teacherId) {
+            ) {
 
         return ResponseEntity.ok(
-                dashboardService.getTeacherDashboard(teacherId));
+                dashboardService.getTeacherDashboard());
     }
 }

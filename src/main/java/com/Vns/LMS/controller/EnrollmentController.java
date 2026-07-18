@@ -59,4 +59,12 @@ public class EnrollmentController {
 
         return ResponseEntity.ok("Enrollment deleted successfully");
     }
+    @GetMapping("/teacher/{teacherId}")
+    public ResponseEntity<List<EnrollmentResponse>> getEnrollmentsByTeacher(
+            @PathVariable Long teacherId) {
+
+        return ResponseEntity.ok(
+                enrollmentService.getEnrollmentsByTeacher(teacherId)
+        );
+    }
 }
