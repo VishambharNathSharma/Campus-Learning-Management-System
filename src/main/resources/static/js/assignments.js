@@ -1,59 +1,95 @@
-async function loadAssignments(courseId) {
+document.addEventListener("DOMContentLoaded", () => {
+    loadAssignments();
+});
+
+async function loadAssignments() {
+
+    const studentId = localStorage.getItem("userId");
+
+    if (!studentId) {
+        alert("Student not logged in.");
+        return;
+    }
 
     try {
 
-        const response = await fetch(
-            `${BASE_URL}/assignments/course/${courseId}`,
+        // Get enrolled courses
+        const enrollmentResponse = await fetch(
+            `${BASE_URL}/enrollments/student/${studentId}`,
             {
-                method: "GET",
                 headers: getHeaders()
             }
         );
 
-        if (!response.ok) {
-            throw new Error("Failed to load assignments.");
+        if (!enrollmentResponse.ok) {
+            throw new Error("Unable to load enrollments.");
         }
 
-        const assignments = await response.json();
+        const enrollments = await enrollmentResponse.json();
 
         const container = document.getElementById("assignmentContainer");
-
         container.innerHTML = "";
 
-        if (assignments.length === 0) {
+        if (enrollments.length === 0) {
 
             container.innerHTML = `
                 <div class="no-data">
-                    <h2>No Assignments Available</h2>
+                    <h2>You are not enrolled in any course.</h2>
                 </div>
             `;
             return;
         }
 
-        document.getElementById("courseTitle").textContent =
-            assignments[0].courseName + " Assignments";
+        let allAssignments = [];
 
-        assignments.forEach(assignment => {
+        // Fetch assignments for every enrolled course
+        for (const enrollment of enrollments) {
 
-            const card = document.createElement("div");
+            const courseId = enrollment.courseId;
 
-            card.className = "assignment-card";
+            const assignmentResponse = await fetch(
+                `${BASE_URL}/assignments/course/${courseId}`,
+                {
+                    headers: getHeaders()
+                }
+            );
 
-            card.innerHTML = `
+            if (assignmentResponse.ok) {
 
-                <h2>${assignment.title}</h2>
+                const assignments = await assignmentResponse.json();
 
-                <p>
-                    <strong>Course :</strong>
-                    ${assignment.courseName}
-                </p>
+                allAssignments.push(...assignments);
 
-                <p>
-                    <strong>Due Date :</strong>
-                    ${formatDate(assignment.dueDateTime)}
-                </p>
+            }
 
-                <div class="card-buttons">
+        }
+
+        if (allAssignments.length === 0) {
+
+            container.innerHTML = `
+                <div class="no-data">
+                    <h2>No assignments available.</h2>
+                </div>
+            `;
+            return;
+        }
+
+        allAssignments.forEach(assignment => {
+
+            container.innerHTML += `
+                <div class="assignment-card">
+
+                    <h2>${assignment.title}</h2>
+
+                    <p>
+                        <strong>Course:</strong>
+                        ${assignment.courseName}
+                    </p>
+
+                    <p>
+                        <strong>Due Date:</strong>
+                        ${formatDate(assignment.dueDateTime)}
+                    </p>
 
                     <button
                         class="view-btn"
@@ -63,25 +99,40 @@ async function loadAssignments(courseId) {
 
                     </button>
 
-                </div>
-
-                <div class="status pending">
-
-                    🟡 Pending
+                    <div class="status pending">
+                        🟡 Pending
+                    </div>
 
                 </div>
-
             `;
-
-            container.appendChild(card);
 
         });
 
     } catch (error) {
 
         console.error(error);
-        alert("Unable to load assignments.");
+
+        alert(error.message);
 
     }
+
+}
+
+function formatDate(dateTime) {
+
+    if (!dateTime) return "-";
+
+    return new Date(dateTime).toLocaleString();
+
+}
+
+function viewQuestionPaper(fileName) {
+
+    if (!fileName) {
+        alert("Question paper not available.");
+        return;
+    }
+
+    window.open(`${BASE_URL.replace("/api", "")}/uploads/${fileName}`, "_blank");
 
 }

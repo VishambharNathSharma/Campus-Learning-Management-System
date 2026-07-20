@@ -43,7 +43,7 @@ public class SecurityConfig {
         .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/auth/**", "/",
                         "/index.html",
-                        "/login.html"    ,            "/css/**",
+                        "/login.html"    ,"/TeacherHome.html","/StudentHome.html","/studentcourse.html","/profile.html","/enrollments.html","/dashboard.html","/course.html","assignments.html","account.html","about_us.html",           "/css/**",
                         "/js/**",
                         "/images/**",
                         "/uploads/**",

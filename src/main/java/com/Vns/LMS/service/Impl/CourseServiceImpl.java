@@ -3,7 +3,9 @@ package com.Vns.LMS.service.Impl;
 import com.Vns.LMS.dto.CourseRequest;
 import com.Vns.LMS.dto.CourseResponse;
 import com.Vns.LMS.entity.Course;
+import com.Vns.LMS.entity.User;
 import com.Vns.LMS.repository.CourseRepository;
+import com.Vns.LMS.repository.UserRepository;
 import com.Vns.LMS.service.CourseService;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +13,11 @@ import java.util.List;
 
 @Service
 public class CourseServiceImpl implements CourseService {
+    private final UserRepository userRepository;
     private final CourseRepository courseRepository;
-    public CourseServiceImpl(CourseRepository courseRepository){
+    public CourseServiceImpl(CourseRepository courseRepository,UserRepository userRepository){
         this.courseRepository=courseRepository;
+        this.userRepository=userRepository;
     }
 
     @Override
@@ -25,6 +29,10 @@ public class CourseServiceImpl implements CourseService {
         course.setCourseCredits(request.getCourseCredits());
         course.setStartDate(request.getStartDate());
         course.setEndDate(request.getEndDate());
+        User teacher = userRepository.findById(request.getTeacherId())
+                .orElseThrow(() -> new RuntimeException("Teacher not found"));
+
+        course.setTeacher(teacher);
         course.setLearningObjectives(request.getLearningObjectives());
         Course savedCourse = courseRepository.save(course);
         CourseResponse response = new CourseResponse();
@@ -129,7 +137,11 @@ public class CourseServiceImpl implements CourseService {
         response.setCourseCode(course.getCourseCode());
         response.setCourseName(course.getCourseName());
         response.setDescription(course.getDescription());
-
+        response.setCourseCredits(course.getCourseCredits());
+        response.setLearningObjectives(course.getLearningObjectives());
+        response.setId(course.getId());
+        response.setStartDate(course.getStartDate());
+        response.setEndDate(course.getEndDate());
 
         if (course.getTeacher() != null) {
             response.setTeacherName(

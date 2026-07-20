@@ -1,7 +1,6 @@
 package com.Vns.LMS.dto;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class AttendanceResponse {
     private Long id;
@@ -9,7 +8,7 @@ public class AttendanceResponse {
     private String courseName;
     private LocalDate attendanceDate;
     private Boolean present;
-
+    private Double percentage;
     private Integer total;
 
     public Integer getTotal() {
@@ -28,7 +27,7 @@ public class AttendanceResponse {
         this.percentage = percentage;
     }
 
-    private Double percentage;
+
     public AttendanceResponse(){
 
     }

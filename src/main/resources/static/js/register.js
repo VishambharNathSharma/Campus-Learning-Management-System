@@ -1,6 +1,11 @@
-const BASE_URL = "http://localhost:8080/api";
+//const BASE_URL = "http://localhost:8080/api";
+document.addEventListener("DOMContentLoaded", () => {
 
-document.getElementById("registerForm").addEventListener("submit", async function (e) {
+    document.getElementById("registerForm").addEventListener("submit", registerUser);
+
+});
+
+async function registerUser(e) {
 
     e.preventDefault();
 
@@ -8,27 +13,34 @@ document.getElementById("registerForm").addEventListener("submit", async functio
 
     const names = fullName.split(" ");
 
-    const firstName = names[0];
-
-    const lastName = names.slice(1).join(" ");
-
     const user = {
-        firstName: firstName,
-        lastName: lastName,
+
+        firstName: names[0],
+
+        lastName: names.slice(1).join(" "),
+
         email: document.getElementById("email").value.trim(),
+
         rollNo: document.getElementById("rollno").value.trim(),
+
         password: document.getElementById("password").value,
+
         role: "STUDENT"
+
     };
 
     try {
 
         const response = await fetch(`${BASE_URL}/auth/register`, {
+
             method: "POST",
+
             headers: {
                 "Content-Type": "application/json"
             },
+
             body: JSON.stringify(user)
+
         });
 
         const message = await response.text();
@@ -49,4 +61,4 @@ document.getElementById("registerForm").addEventListener("submit", async functio
 
     }
 
-});
+}

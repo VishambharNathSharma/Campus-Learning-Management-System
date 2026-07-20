@@ -47,7 +47,15 @@ public class Course {
     public LocalDate getEndDate() {
         return endDate;
     }
-
+    public Course(Long id,String courseCode,String courseName,String description,Integer courseCredits,LocalDate startDate,LocalDate endDate){
+        this.id=id;
+        this.courseCode=courseCode;
+        this.courseName=courseName;
+        this.description=description;
+        this.courseCredits=courseCredits;
+        this.startDate=startDate;
+        this.endDate=endDate;
+    }
     public List<String> getLearningObjectives() {
         return learningObjectives;
     }

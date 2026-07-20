@@ -56,11 +56,7 @@ async function loadAssignments() {
 
                 <td>
 
-                    <button onclick="viewSubmissions(${assignment.id})">
 
-                        View
-
-                    </button>
 
                     <button onclick="deleteAssignment(${assignment.id})">
 

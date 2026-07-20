@@ -6,13 +6,15 @@ async function loadDashboard() {
 
     try {
 
-        const response = await fetch(
-            `${BASE_URL}/student/dashboard`,
-            {
-                method: "GET",
-                headers: getHeaders()
-            }
-        );
+      const studentId = localStorage.getItem("userId");
+
+      const response = await fetch(
+          `${BASE_URL}/dashboard/student/${studentId}`,
+          {
+              method: "GET",
+              headers: getHeaders()
+          }
+      );
 
         if (!response.ok) {
             throw new Error("Unable to load dashboard");

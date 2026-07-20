@@ -507,7 +507,7 @@ span[id$='Error'] {
         <div class="main_content">
             <div class="btn-background">
             <button  class="btn" onClick="toggleSection1()">Browse Courses</button>
-            <button  class="btn" onClick="toggleSection2()">Materials</button>
+
             <button  class="btn" onClick="toggleSection4()">Assignments</button>
             <button  class="btn" onClick="toggleSection3()">Submit assignment</button>
             </div>
@@ -519,15 +519,15 @@ span[id$='Error'] {
 
             </div>
         </section>
-        <section class="course panel" id="materials" hidden>
-            <h1>Course materials</h1>
-            <p type="sub" style="position:relative;left:20px">Pick a course to view its lessons and resources.</p>
-            <select name="materials" id="materialcourse">
-                <option value="Course1">Course1</option>
-                <option value="Course2">Course2</option>
-                <option value="Course3">Course3</option>
-            </select>
-        </section>
+<!--        <section class="course panel" id="materials" hidden>-->
+<!--            <h1>Course materials</h1>-->
+<!--            <p type="sub" style="position:relative;left:20px">Pick a course to view its lessons and resources.</p>-->
+<!--            <select name="materials" id="materialcourse">-->
+<!--                <option value="Course1">Course1</option>-->
+<!--                <option value="Course2">Course2</option>-->
+<!--                <option value="Course3">Course3</option>-->
+<!--            </select>-->
+<!--        </section>-->
         <section class="course panel" id="assignmentslist" hidden>
             <h1 id="courseTitle" >Assignments</h1>
             <p type="sub" style="position:relative;left:20px">Assignments pending submission across your enrolled courses.</p>
@@ -557,34 +557,11 @@ span[id$='Error'] {
     <script>
             
           document.addEventListener('DOMContentLoaded',function(){
-              const darkModeKey = 'darkMode';
 
-    function setDarkMode(isDark) {
-        document.body.classList.toggle('darkmode', isDark);
-        localStorage.setItem(darkModeKey, isDark ? 'enabled' : 'disabled');
-    }
-
-    const savedDarkMode = localStorage.getItem(darkModeKey);
-    if (savedDarkMode === 'enabled') {
-        setDarkMode(true);
-    } else if (savedDarkMode === 'disabled') {
-        setDarkMode(false);
-    }
-
-    var darkToggles = document.querySelectorAll('.dark');
-    if (darkToggles.length === 0) {
-        console.warn('No elements found with class "dark". Toggle will not work.');
-    }
-    darkToggles.forEach(function(el) {
-        el.addEventListener('click', function() {
-            const isDark = !document.body.classList.contains('darkmode');
-            setDarkMode(isDark);
-        });
-    });
     const sections = {
         browsecourses: document.getElementById("browsecourses"),
         assignments: document.getElementById("assignments"),
-        materials: document.getElementById("materials"),
+
         assignmentslist: document.getElementById("assignmentslist")
     };
 
@@ -610,9 +587,7 @@ span[id$='Error'] {
     window.toggleSection1 = function toggleSection1(){
         showSection('browsecourses');
     };
-    window.toggleSection2 = function toggleSection2(){
-        showSection('materials');
-    };
+
     window.toggleSection3 = function toggleSection3(){
         showSection('assignments');
     };
@@ -641,9 +616,9 @@ span[id$='Error'] {
 </footer>
 
 <script src="script.js"></script>
-
-
-
+<script src="js/assignments.js"></script>
+<script src="js/courses.js"></script>
+<script src="js/submitAssignment.js"></script>
 </body>
 
 </html>

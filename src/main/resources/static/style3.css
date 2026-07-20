@@ -14,7 +14,9 @@ body {
     opacity: 1;
     transition: opacity 0.3s ease;
 }
-
+#email{
+color:aqua;
+}
 .container {
     width: 100%;
     min-height: 100vh;

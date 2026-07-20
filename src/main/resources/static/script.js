@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Form submit: validate each form separately and prevent submit if any invalid
-    var forms = document.querySelectorAll('form');
+    var forms = document.querySelectorAll("#registerForm, #studentForm, #teacherForm");
     forms.forEach(function(form) {
         form.addEventListener('submit', function(e) {
             function validateAll() {
@@ -153,9 +153,9 @@ document.addEventListener('DOMContentLoaded', function() {
             if (validateAll()) {
                 const role = form.id === 'studentForm' ? 'student' : form.id === 'teacherForm' ? 'teacher' : (document.getElementById('role')?.value || 'student');
                 localStorage.setItem('role', role);
-                if (role === 'teacher') {
+                if (role === 'TEACHER') {
                     window.location.href = 'TeacherHome.html';
-                } else if (role === 'student') {
+                } else if (role === 'STUDENT') {
                     window.location.href = 'StudentHome.html';
                 }
              else {
@@ -239,7 +239,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const role = document.getElementById('role')?.value || 'student';
     localStorage.setItem('role', role);
-    if(role === 'teacher'){
+    if(role === 'TEACHER'){
     window.location.href = 'TeacherHome.html';
     }
     else{
@@ -250,10 +250,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // set courses link based on role
 const coursesLink = document.getElementById('coursesLink');
-if (role === 'teacher') {
+if(coursesLink){
+if (role === "TEACHER") {
+
   coursesLink.href = 'course.html';
 } else{
   coursesLink.href = 'studentcourse.html';
+}
 }
   
  

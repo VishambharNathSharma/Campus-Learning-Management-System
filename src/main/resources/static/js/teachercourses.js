@@ -5,10 +5,10 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     // Redirect if not logged in
-    if (!localStorage.getItem("token")) {
-        window.location.href = "index.html";
-        return;
-    }
+//    if (!localStorage.getItem("token")) {
+//        window.location.href = "index.html";
+//        return;
+//    }
 
     // Load course table if present
     if (document.getElementById("courseTableBody")) {
@@ -171,7 +171,7 @@ async function createCourse(event) {
         description: document.getElementById("courseDescription").value,
 
         courseCredits: parseInt(
-            document.getElementById("credits").value
+            document.getElementById("courseCredits").value
         ),
 
         startDate: document.getElementById("startDate").value,

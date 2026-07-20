@@ -4,6 +4,7 @@ import com.Vns.LMS.dto.AttendanceRequest;
 import com.Vns.LMS.dto.AttendanceResponse;
 import com.Vns.LMS.dto.AttendanceSummaryResponse;
 import com.Vns.LMS.service.AttendanceService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,7 @@ public class AttendanceController {
 
     @PostMapping
     public ResponseEntity<AttendanceResponse> markAttendance(
-            @RequestBody AttendanceRequest request) {
+            @Valid @RequestBody AttendanceRequest request) {
 
         return new ResponseEntity<>(
                 attendanceService.markAttendance(request),
@@ -34,8 +35,8 @@ public class AttendanceController {
         return ResponseEntity.ok(attendanceService.getAllAttendance());
     }
     @GetMapping("/summary")
-    public ResponseEntity<AttendanceSummaryResponse> getAttendanceSummary(@RequestParam Long studentId,@RequestParam Long courseID){
-        return ResponseEntity.ok(attendanceService.getAttendanceSummary(studentId,courseID));
+    public ResponseEntity<AttendanceSummaryResponse> getAttendanceSummary(@RequestParam Long studentId,@RequestParam Long courseId){
+        return ResponseEntity.ok(attendanceService.getAttendanceSummary(studentId,courseId));
     }
 
     @GetMapping("/{id}")
@@ -49,7 +50,7 @@ public class AttendanceController {
     @PutMapping("/{id}")
     public ResponseEntity<AttendanceResponse> updateAttendance(
             @PathVariable Long id,
-            @RequestBody AttendanceRequest request) {
+            @Valid @RequestBody AttendanceRequest request) {
 
         return ResponseEntity.ok(
                 attendanceService.updateAttendance(id, request));

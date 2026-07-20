@@ -1,22 +1,28 @@
-document.addEventListener('DomContentLoaded',()=>{
-loadCourses();
-})
+document.addEventListener("DOMContentLoaded", () => {
+    loadCourses();
+});
 
-async function loadCourses(){
-try{
-const response= await fetch(`${BASE_URL}/courses`,{
-headers:getHeaders()
-}
-);
-if(!response.ok()){
-throw new Error("Unable to load courses");
-}
-const courses=await response.json();
+async function loadCourses() {
 
-const container=document.getElementById("courseContainer");
-container.innerHtml="";
-courses.forEach(courses=>{
-  container.innerHTML += `
+    try {
+
+        const response = await fetch(`${BASE_URL}/courses`, {
+            headers: getHeaders()
+        });
+
+        if (!response.ok) {
+            throw new Error("Unable to load courses");
+        }
+
+        const courses = await response.json();
+
+        const container = document.getElementById("course_container");
+
+        container.innerHTML = "";
+
+        courses.forEach(course => {
+
+            container.innerHTML += `
                 <div class="course-card">
 
                     <p><strong>${course.courseCode}</strong></p>
@@ -39,9 +45,10 @@ courses.forEach(courses=>{
 
         });
 
-    }
-    catch(error){
+    } catch (error) {
+
         console.error(error);
+
     }
 
 }

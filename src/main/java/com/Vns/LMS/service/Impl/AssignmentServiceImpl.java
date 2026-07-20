@@ -71,6 +71,7 @@ public class AssignmentServiceImpl implements AssignmentService {
         AssignmentResponse response = new AssignmentResponse();
 
         response.setId(assignment.getId());
+        response.setCourseId(assignment.getCourse().getId());
 
         response.setCourseName(
                 assignment.getCourse().getCourseName());

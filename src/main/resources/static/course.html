@@ -294,7 +294,7 @@ span[id$='Error'] {
                     <input type="date" name="date" class="input" id="endDate"><br>
                     </fieldset>
                     <div id="learningObjectives"></div>
-                    <button type="submit" class="btn" onclick="addObjective()">Create course</button>
+                    <button type="submit" class="btn">Create course</button>
                 </form>
             </section>
             </div>
@@ -359,7 +359,7 @@ span[id$='Error'] {
             </section>
         </div>
     </div>
-    <script src="js/config.js"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded',function(){
               const darkModeKey = 'darkMode';
@@ -481,21 +481,26 @@ span[id$='Error'] {
 //     alert("Logged In as" +role);
 
 // }
-    const role = localStorage.getItem('role');
+  const role = localStorage.getItem("role");
 
-// set courses link based on role
-const coursesLink = document.getElementById('coursesLink');
-if (role === 'teacher') {
-  coursesLink.href = 'course.html';
-} else if (role === 'student') {
-  coursesLink.href = 'studentcourse.html';
+const coursesLink = document.getElementById("coursesLink");
+
+if (coursesLink) {
+
+    if (role === "TEACHER") {
+        coursesLink.href = "course.html";
+    } else if (role === "STUDENT") {
+        coursesLink.href = "studentcourse.html";
+    }
+
 }
 
         });
     </script>
-
+    <script src="js/config.js"></script>
     <script src="script.js"></script>
     <script src="js/teachercourses.js"></script>
+
     <footer>
     <p>© 2026 Campus Learning Management System. All rights reserved.</p>
 </footer>

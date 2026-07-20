@@ -4,8 +4,6 @@ package com.Vns.LMS.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-
 @Entity
 @Table(name = "attendance")
 public class Attendance {
@@ -30,6 +28,8 @@ public class Attendance {
     @Column(nullable = false)
     private Boolean present;
 
+
+
     public Double getPercentage() {
         return percentage;
     }
@@ -44,12 +44,13 @@ public class Attendance {
 
     }
 
-    public Attendance(Long id,Long percentage,User student,Course course,LocalDate attendanceDate,Boolean present){
+    public Attendance(Long id,User student,Course course,LocalDate attendanceDate,Boolean present,Double percentage){
         this.id=id;
         this.course=course;
         this.attendanceDate=attendanceDate;
         this.present=present;
         this.student=student;
+        this.percentage=percentage;
     }
 
     public Long getId() {
@@ -84,7 +85,7 @@ public class Attendance {
         this.attendanceDate = attendanceDate;
     }
 
-    public boolean getPresent() {
+    public Boolean getPresent() {
         return present;
     }
 

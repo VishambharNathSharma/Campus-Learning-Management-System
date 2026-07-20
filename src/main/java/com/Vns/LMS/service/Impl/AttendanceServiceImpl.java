@@ -3,7 +3,6 @@ package com.Vns.LMS.service.Impl;
 import com.Vns.LMS.dto.AttendanceRequest;
 import com.Vns.LMS.dto.AttendanceResponse;
 import com.Vns.LMS.dto.AttendanceSummaryResponse;
-import com.Vns.LMS.dto.ExamResponse;
 import com.Vns.LMS.entity.Attendance;
 import com.Vns.LMS.entity.Course;
 import com.Vns.LMS.entity.Exam;
@@ -40,45 +39,71 @@ public class AttendanceServiceImpl implements AttendanceService {
         response.setAttendanceDate(attendance.getAttendanceDate());
         response.setPresent(attendance.getPresent());
         response.setId(attendance.getId());
-        response.setStudentName(attendance.getStudent().getFirstName()+""+attendance.getStudent().getLastName());
-
+        response.setStudentName(attendance.getStudent().getFirstName()+" "+attendance.getStudent().getLastName());
+        response.setPercentage(attendance.getPercentage());
         return response;
     }
 
-    public double calculatePercentage(long present,long total){
+    private double calculatePercentage(long present,long total){
         if(total==0)
             return 0.0;
 
         return (present*100.0)/total;
     }
 
-        @Override
-        public AttendanceResponse markAttendance(AttendanceRequest request) {
+    private double calculateCurrentPercentage(Long studentId, Long courseId) {
+        long total = attendanceRepository.countByStudentIdAndCourseId(studentId, courseId);
+        long present = attendanceRepository.countByStudentIdAndCourseIdAndPresentTrue(studentId, courseId);
 
-            User student = userRepository.findById(request.getStudentId())
-                    .orElseThrow(() -> new RuntimeException("Student not found"));
+        return calculatePercentage(present, total);
+    }
 
-            Course course = courseRepository.findById(request.getCourseId())
-                    .orElseThrow(() -> new RuntimeException("Course not found"));
-            attendanceRepository
-                    .findByStudentIdAndCourseIdAndAttendanceDate(
-                            request.getStudentId(),
-                            request.getCourseId(),
-                            request.getAttendanceDate()
-                    )
-                    .ifPresent(a -> {
-                        throw new RuntimeException("Attendance already marked for this student on this date.");
-                    });
-            Attendance attendance = new Attendance();
-            attendance.setStudent(student);
-            attendance.setCourse(course);
-            attendance.setAttendanceDate(request.getAttendanceDate());
-            attendance.setPresent(request.getPresent());
-
-            Attendance savedAttendance = attendanceRepository.save(attendance);
-
-            return mapToResponse(savedAttendance);
+    private Exam getRequiredExam(Long courseId, ExamType examType) {
+        Exam exam = examRepository.findByCourseIdAndExamType(courseId, examType);
+        if (exam == null) {
+            throw new RuntimeException(examType + " exam not found for this course");
         }
+        return exam;
+    }
+
+    private void checkDuplicateAttendance(Long currentAttendanceId, AttendanceRequest request) {
+        Optional<Attendance> existingAttendance = attendanceRepository
+                .findByStudentIdAndCourseIdAndAttendanceDate(
+                        request.getStudentId(),
+                        request.getCourseId(),
+                        request.getAttendanceDate()
+                );
+
+        existingAttendance.ifPresent(attendance -> {
+            if (currentAttendanceId == null || !attendance.getId().equals(currentAttendanceId)) {
+                throw new RuntimeException("Attendance already marked for this student, course, and date.");
+            }
+        });
+    }
+
+    @Override
+    public AttendanceResponse markAttendance(AttendanceRequest request) {
+
+        User student = userRepository.findById(request.getStudentId())
+                .orElseThrow(() -> new RuntimeException("Student not found"));
+
+        Course course = courseRepository.findById(request.getCourseId())
+                .orElseThrow(() -> new RuntimeException("Course not found"));
+
+        checkDuplicateAttendance(null, request);
+
+        Attendance attendance = new Attendance();
+        attendance.setStudent(student);
+        attendance.setCourse(course);
+        attendance.setAttendanceDate(request.getAttendanceDate());
+        attendance.setPresent(request.getPresent());
+        attendance.setPercentage(0.0);
+
+        Attendance savedAttendance = attendanceRepository.save(attendance);
+        savedAttendance.setPercentage(calculateCurrentPercentage(request.getStudentId(), request.getCourseId()));
+
+        return mapToResponse(attendanceRepository.save(savedAttendance));
+    }
 
 
     @Override
@@ -109,14 +134,18 @@ public class AttendanceServiceImpl implements AttendanceService {
         Course course = courseRepository.findById(request.getCourseId())
                 .orElseThrow(() -> new RuntimeException("Course not found"));
 
+        checkDuplicateAttendance(id, request);
+
         attendance.setStudent(student);
         attendance.setCourse(course);
         attendance.setAttendanceDate(request.getAttendanceDate());
         attendance.setPresent(request.getPresent());
+        attendance.setPercentage(0.0);
 
         Attendance updatedAttendance = attendanceRepository.save(attendance);
+        updatedAttendance.setPercentage(calculateCurrentPercentage(request.getStudentId(), request.getCourseId()));
 
-        return mapToResponse(updatedAttendance);
+        return mapToResponse(attendanceRepository.save(updatedAttendance));
     }
 
     @Override
@@ -131,20 +160,20 @@ public class AttendanceServiceImpl implements AttendanceService {
     public AttendanceSummaryResponse getAttendanceSummary(Long studentID,Long courseID){
         User student = userRepository.findById(studentID).orElseThrow(()-> new RuntimeException("Student not found"));
         Course course = courseRepository.findById(courseID).orElseThrow(()-> new RuntimeException("Course not found"));
-        Exam st1Exam = examRepository.findByCourseIdAndExamType(courseID, ExamType.ST1);
-        Exam st2Exam = examRepository.findByCourseIdAndExamType(courseID,ExamType.ST2);
+        Exam st1Exam = getRequiredExam(courseID, ExamType.ST1);
+        Exam st2Exam = getRequiredExam(courseID,ExamType.ST2);
         LocalDate semesterStart = course.getStartDate();
         LocalDate today= LocalDate.now();
 
-        Long st1Total = attendanceRepository.countByStudentIdAndAttendanceDateBetween(studentID,semesterStart,st1Exam.getExamDate());
-        Long st1Present = attendanceRepository.countByStudentIdAndPresentTrueAndAttendanceDateBetween(studentID,semesterStart,st1Exam.getExamDate());
-        Long st2Total = attendanceRepository.countByStudentIdAndAttendanceDateBetween(studentID,semesterStart,st2Exam.getExamDate());
-        Long st2Present = attendanceRepository.countByStudentIdAndAttendanceDateBetween(studentID,semesterStart,st2Exam.getExamDate());
-        long overallTotal = attendanceRepository.countByStudentIdAndAttendanceDateBetween(
-                studentID, semesterStart, today);
+        Long st1Total = attendanceRepository.countByStudentIdAndCourseIdAndAttendanceDateBetween(studentID,courseID,semesterStart,st1Exam.getExamDate());
+        Long st1Present = attendanceRepository.countByStudentIdAndCourseIdAndPresentTrueAndAttendanceDateBetween(studentID,courseID,semesterStart,st1Exam.getExamDate());
+        Long st2Total = attendanceRepository.countByStudentIdAndCourseIdAndAttendanceDateBetween(studentID,courseID,semesterStart,st2Exam.getExamDate());
+        Long st2Present = attendanceRepository.countByStudentIdAndCourseIdAndPresentTrueAndAttendanceDateBetween(studentID,courseID,semesterStart,st2Exam.getExamDate());
+        long overallTotal = attendanceRepository.countByStudentIdAndCourseIdAndAttendanceDateBetween(
+                studentID, courseID, semesterStart, today);
 
-        long overallPresent = attendanceRepository.countByStudentIdAndPresentTrueAndAttendanceDateBetween(
-                studentID, semesterStart, today);
+        long overallPresent = attendanceRepository.countByStudentIdAndCourseIdAndPresentTrueAndAttendanceDateBetween(
+                studentID, courseID, semesterStart, today);
 
         AttendanceSummaryResponse response = new AttendanceSummaryResponse();
         response.setStudentName(student.getFirstName() + " " + student.getLastName());

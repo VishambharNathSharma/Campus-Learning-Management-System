@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 public class AssignmentResponse {
     private Long id;
 
+    private Long courseId;
+
     private String courseName;
 
     private String title;
@@ -35,6 +37,14 @@ public class AssignmentResponse {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(Long courseId) {
+        this.courseId = courseId;
     }
 
     public String getCourseName() {

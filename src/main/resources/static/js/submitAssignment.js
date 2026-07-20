@@ -1,94 +1,111 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
 
     loadStudentAssignments();
 
     document
-    .getElementById("assignmentsubmitbutton")
-    .addEventListener("click", submitAssignment);
+        .getElementById("assignmentsubmitbutton")
+        .addEventListener("click", submitAssignment);
 
 });
 
+// ===========================
+// Load Assignments
+// ===========================
 
-// Load assignments in dropdown
-
-async function loadStudentAssignments(){
+async function loadStudentAssignments() {
 
     const studentId = localStorage.getItem("userId");
 
-
-    if(!studentId){
-
+    if (!studentId) {
         alert("Student not logged in");
         return;
-
     }
 
+    try {
 
-    try{
-
-
-        const response = await fetch(
-
-            `${BASE_URL}/assignments/student/${studentId}`,
-
+        // Get enrolled courses
+        const enrollmentResponse = await fetch(
+            `${BASE_URL}/enrollments/student/${studentId}`,
             {
-
-                method:"GET",
-
-                headers:getHeaders()
-
+                method: "GET",
+                headers: getHeaders()
             }
-
         );
 
-
-        if(!response.ok){
-
-            throw new Error("Unable to load assignments");
-
+        if (!enrollmentResponse.ok) {
+            throw new Error("Unable to load enrollments");
         }
 
+        const enrollments = await enrollmentResponse.json();
 
-        const assignments = await response.json();
+        const select = document.getElementById("assignmentcourse");
 
+        select.innerHTML = "";
 
+        if (enrollments.length === 0) {
 
-        const select =
-        document.getElementById("assignmentcourse");
-
-
-
-        select.innerHTML="";
-
-
-
-        assignments.forEach(assignment=>{
-
-
-            const option =
-            document.createElement("option");
-
-
-
-            option.value =
-            assignment.id;
-
-
-
-            option.textContent =
-            `${assignment.courseName} - ${assignment.title}`;
-
-
+            const option = document.createElement("option");
+            option.textContent = "No enrolled courses";
+            option.disabled = true;
+            option.selected = true;
 
             select.appendChild(option);
 
+            return;
+        }
 
-        });
+        let totalAssignments = 0;
 
+        for (const enrollment of enrollments) {
 
+            const courseId = enrollment.courseId;
+
+            const assignmentResponse = await fetch(
+                `${BASE_URL}/assignments/course/${courseId}`,
+                {
+                    method: "GET",
+                    headers: getHeaders()
+                }
+            );
+
+            if (!assignmentResponse.ok) {
+                continue;
+            }
+
+            const assignments = await assignmentResponse.json();
+
+            assignments.forEach(assignment => {
+
+                const option = document.createElement("option");
+
+                option.value = assignment.id;
+
+                option.textContent =
+                    `${assignment.courseName} - ${assignment.title}`;
+
+                select.appendChild(option);
+
+                totalAssignments++;
+
+            });
+
+        }
+
+        if (totalAssignments === 0) {
+
+            const option = document.createElement("option");
+
+            option.textContent = "No assignments available";
+
+            option.disabled = true;
+            option.selected = true;
+
+            select.appendChild(option);
+
+        }
 
     }
-    catch(error){
+    catch (error) {
 
         console.error(error);
 
@@ -98,45 +115,35 @@ async function loadStudentAssignments(){
 
 }
 
-
-
-
+// ===========================
 // Submit Assignment
+// ===========================
 
-async function submitAssignment(){
+async function submitAssignment(event) {
 
+    event.preventDefault();
 
     const assignmentId =
-    document.getElementById("assignmentcourse").value;
-
-
+        document.getElementById("assignmentcourse").value;
 
     const file =
-    document.getElementById("assignfile").files[0];
-
-
+        document.getElementById("assignfile").files[0];
 
     const notes =
-    document.getElementById("notes").value;
-
-
+        document.getElementById("notes").value;
 
     const studentId =
-    localStorage.getItem("userId");
+        localStorage.getItem("userId");
 
+    if (!assignmentId || assignmentId === "No assignments available") {
 
-
-    if(!assignmentId){
-
-        alert("Please select assignment");
+        alert("Please select an assignment");
 
         return;
 
     }
 
-
-
-    if(!file){
+    if (!file) {
 
         alert("Please attach your assignment PDF");
 
@@ -144,10 +151,7 @@ async function submitAssignment(){
 
     }
 
-
-
-    if(file.type !== "application/pdf"){
-
+    if (file.type !== "application/pdf") {
 
         alert("Only PDF files are allowed");
 
@@ -155,107 +159,54 @@ async function submitAssignment(){
 
     }
 
-
-
     const formData = new FormData();
 
+    formData.append("assignmentId", assignmentId);
 
+    formData.append("studentId", studentId);
 
-    formData.append(
-        "assignmentId",
-        assignmentId
-    );
+    formData.append("notes", notes);
 
+    formData.append("file", file);
 
-
-    formData.append(
-        "studentId",
-        studentId
-    );
-
-
-
-    formData.append(
-        "notes",
-        notes
-    );
-
-
-
-    formData.append(
-        "file",
-        file
-    );
-
-
-
-    try{
-
+    try {
 
         const response = await fetch(
-
             `${BASE_URL}/submissions`,
-
             {
+                method: "POST",
 
-                method:"POST",
-
-                headers:{
-
-                    "Authorization":
-                    "Bearer " + getToken()
-
+                headers: {
+                    "Authorization": "Bearer " + getToken()
                 },
 
-
-                body:formData
-
+                body: formData
             }
-
         );
 
+        if (response.ok) {
 
+            alert("Assignment submitted successfully");
 
-        if(response.ok){
+            document.getElementById("assignfile").value = "";
 
+            document.getElementById("notes").value = "";
 
-            alert(
-                "Assignment submitted successfully"
-            );
+        } else {
 
-
-
-            document.getElementById("assignfile").value="";
-
-            document.getElementById("notes").value="";
-
-
-        }
-        else{
-
-
-            const message =
-            await response.text();
-
+            const message = await response.text();
 
             alert(message);
 
-
         }
 
-
     }
-    catch(error){
-
+    catch (error) {
 
         console.error(error);
 
-        alert(
-            "Submission failed"
-        );
-
+        alert("Submission failed");
 
     }
-
 
 }

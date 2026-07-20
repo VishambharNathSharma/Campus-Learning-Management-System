@@ -1,16 +1,33 @@
 package com.Vns.LMS.dto;
 
+import jakarta.validation.constraints.NotNull;
+
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class AttendanceRequest {
+    @NotNull(message = "Student id is required")
     private Long studentId;
+
+    @NotNull(message = "Course id is required")
     private Long courseId;
+
+    @NotNull(message = "Attendance date is required")
     private LocalDate attendanceDate;
+
+    @NotNull(message = "Present status is required")
     private Boolean present;
 
+    private Double percentage;
     public AttendanceRequest(){
 
+    }
+
+    public Double getPercentage() {
+        return percentage;
+    }
+
+    public void setPercentage(Double percentage) {
+        this.percentage = percentage;
     }
 
     public Long getStudentId() {

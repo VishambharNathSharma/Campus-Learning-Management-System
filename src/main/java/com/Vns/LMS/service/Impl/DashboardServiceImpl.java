@@ -111,7 +111,7 @@ public class DashboardServiceImpl implements DashboardService {
                     return response1;
 
                 }).toList();
-
+        response.setEmail(student.getEmail());
         response.setEnrolledCourses(courseResponses);
         return response;
     }
